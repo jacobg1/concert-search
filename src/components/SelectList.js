@@ -22,23 +22,24 @@ class SelectList extends Component {
         // console.log(artistYearList[e.target.value])
 
         this.setState({
-            yearOptions: artistYearList[e.target.value] || [' '],
-            artist: ''
+            artist: e.target.value,
+            yearOptions: [' '],
+            year: ''
         }, function () {
-            this.setState({ artist: e.target.value })
-        }, function () {
-            console.log(this.state.artist)
-
+            console.log(this.state.year, this.state.artist)
+            let years = artistYearList[this.state.artist] || [' ']
+            this.setState({
+                yearOptions: years
+            })
         })
     }
     setYear(e) {
-        this.setState({ 
-            year: e.target.value !== ' ' ? e.target.value : ''
-        }, function () {
+        this.setState({ year: e.target.value}, function () {
             console.log(this.state.year, this.state.artist)
         })
     }
     render() {
+        
         let artistChoices = this.state.dropDownOptions.map((artist, index) => {
             return (
               <option key={ index + 1 } value={ artist[0] }>{ artist[0] }</option>
@@ -54,21 +55,19 @@ class SelectList extends Component {
                 <option key={ index + 1 } value={ year }>{ year }</option>
             )
         })
-        if(this.state.yearOptions !== [' ']) {
-            yearList.unshift(
-                <option key='0' value=''>Select year(optional)</option>
-            )
-        }
-        let yearSelect = 
-            <select value={this.state.year} onChange={(e) => this.setYear(e)}>
-                {yearList}
-            </select>
+     
+        yearList.unshift(
+            <option key='0' value=''>Select year(optional)</option>
+        )
+        
         return (
             <>
                 <select onChange={(e) => this.getYears(e)}>
                     { artistChoices }
                 </select>
-                { this.state.artist !== '' ? yearSelect : '' }
+                <select value={ this.state.year } onChange={(e) => this.setYear(e)}>
+                    { yearList }
+                </select>
             </>
         );
     }
