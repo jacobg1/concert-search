@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
-import React, { Component } from 'react';
-import artistYearList from '../data/artistYearList';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import artistYearList from '../data/artistYearList'
 
 class SelectList extends Component {
     constructor(props) {
@@ -39,7 +40,7 @@ class SelectList extends Component {
         })
     }
     render() {
-        
+
         let artistChoices = this.state.dropDownOptions.map((artist, index) => {
             return (
               <option key={ index + 1 } value={ artist[0] }>{ artist[0] }</option>
@@ -62,14 +63,27 @@ class SelectList extends Component {
         
         return (
             <>
-                <select onChange={(e) => this.getYears(e)}>
-                    { artistChoices }
-                </select>
-                <select value={ this.state.year } onChange={(e) => this.setYear(e)}>
-                    { yearList }
-                </select>
+                <form onSubmit={
+                    (e) => this.props.makeSearch(e, this.state.artist, this.state.year)
+                }>
+
+                    <select onChange={(e) => this.getYears(e)}>
+                        { artistChoices }
+                    </select>
+
+                    <select value={ this.state.year } onChange={(e) => this.setYear(e)}>
+                        { yearList }
+                    </select>
+
+                    <button type="submit">go</button>
+
+                </form>
             </>
         );
     }
 }
-export default SelectList;
+export default SelectList
+
+SelectList.propTypes = {
+    makeSearch: PropTypes.func.isRequired
+}
