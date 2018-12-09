@@ -13,22 +13,29 @@ class HomeContainer extends Component {
             searchResults: null,
             showIndividualConcert: false,
             selectedArtist: '',
-            selectedYear: ''
+            selectedYear: '',
+            selectedConcert: ''
         }
+        // binding 'this' to passed down functions to keep context
         this.makeSearch = this.makeSearch.bind(this)
         this.showConcertScreen = this.showConcertScreen.bind(this)
+        this.setConcert = this.setConcert.bind(this)
     }
 
     makeSearch(e, searchArtist, searchYear) {
         
        e.preventDefault()
-       
+
+       // only make search results if search artist has been selected
        if(searchArtist !== '') {
 
+           // format artist name for api call
            let formatArtist = searchArtist.replace(/ /g, '+')
 
+           // build api call url 
            let url = 'http://localhost:3000/meta/' + formatArtist + '/' + searchYear
 
+           // make call then set state of results 
            axios({
                method: 'GET',
                url: url,
@@ -47,17 +54,30 @@ class HomeContainer extends Component {
        }
     }
 
-    showConcertScreen () {
-        this.setState({ showIndividualConcert: !this.state.showIndividualConcert })
+    showConcertScreen (selectedConcert) {
+        // toggle individual concert screen
+        this.setState({ 
+            showIndividualConcert: !this.state.showIndividualConcert,
+            selectedConcert: selectedConcert 
+        }, () => {
+            console.log(this.state.selectedConcert)
+        })
+    }
+
+    setConcert() {
+
     }
 
     render() {
 
         return (
-            <>                        
-                <SelectList
-                    makeSearch={ this.makeSearch }
-                />
+            <>  
+                {
+                    this.state && !this.state.selectedConcert &&
+                        <SelectList
+                            makeSearch={this.makeSearch}
+                        />
+                }                      
 
                 <h2>Searching for:</h2>
                 
@@ -72,19 +92,21 @@ class HomeContainer extends Component {
                     }
 
                         { 
-                            this.state && this.state.searchResults && !this.state.showIndividualConcert && 
+                            this.state && this.state.searchResults && !this.state.selectedConcert && 
 
                                 <ConcertSearchResults 
                                     concerts={ this.state.searchResults }
                                     showConcertScreen= { this.showConcertScreen }
+                                    setConcert= { this.setConcert }
                                 />
                         }
 
                         {
-                            this.state && this.state.showIndividualConcert &&
+                            this.state && this.state.selectedConcert &&
 
                                 <IndividualConcert 
                                     showConcertScreen={ this.showConcertScreen }
+                                    concertToPlay={ this.state.selectedConcert }
                                 />
                         }
 
