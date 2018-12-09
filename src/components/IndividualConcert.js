@@ -12,16 +12,18 @@ class IndividualConcert extends Component {
         this.state = {
             loading: true,
             trackList: null,
-            metaData: {}
+            metaData: {},
+            songIndex: null
         }
         this.setSong = this.setSong.bind(this)
+        this.nextSong = this.nextSong.bind(this)
     }
 
     componentDidMount () {
         
         // make api call for concert data on component mount
         let url = 'http://localhost:3000/concert/' + this.props.concertToPlay
-        console.log(url)
+        // console.log(url)
 
         axios({
             method: 'GET',
@@ -29,7 +31,7 @@ class IndividualConcert extends Component {
             dataType: 'jsonp'
         }).then((response) => {
 
-            console.log(response)
+            // console.log(response)
             let { metaData } = response.data
             let { trackList } = response.data
 
@@ -47,7 +49,7 @@ class IndividualConcert extends Component {
                     source: metaData.source
                 }
             }, () => {
-                console.log(this.state.trackList, this.state.metaData)
+                // console.log(this.state.trackList, this.state.metaData)
             })
 
         }).catch(function (error) {
@@ -55,10 +57,31 @@ class IndividualConcert extends Component {
         })
     }
 
-    setSong(selectedSong) {
-        console.log(selectedSong)
+    setSong(selectedSong, songIndex) {
+        console.log(selectedSong, songIndex)
         this.setState({
-            selectedSong: selectedSong
+            selectedSong: selectedSong,
+            songIndex: songIndex
+        }, () => {
+            console.log('here', songIndex)
+        })
+    }
+
+    nextSong () {
+        this.setState({
+            songIndex: this.state.songIndex + 1
+        }, () => {
+            let trackListLength = Object.keys(this.state.trackList).length
+            if (this.state.songIndex === trackListLength) {
+                this.setState({
+                    selectedSong: this.state.trackList[0].playUrl
+                })
+            } else {
+                this.setState({
+                    selectedSong: this.state.trackList[this.state.songIndex].playUrl
+                })
+            }
+            
         })
     }
 
@@ -102,12 +125,14 @@ class IndividualConcert extends Component {
                 {
                     this.state && this.state.selectedSong &&
                         <Player
-                            songToPlay={this.state.selectedSong}
+                            songToPlay={ this.state.selectedSong }
+                            nextSong={ this.nextSong }
                         />
                 }
                 
                     
                     <button onClick={() => this.props.showConcertScreen()}>back</button>
+                    <button onClick={() => this.nextSong()}>Next Song</button>
 
                 </div>
             </>
