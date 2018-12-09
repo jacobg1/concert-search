@@ -36,6 +36,7 @@ class IndividualConcert extends Component {
             this.setState({
                 loading: false,
                 trackList: trackList,
+                selectedSong: '',
                 metaData: {
                     coverage: metaData.coverage,
                     venue: metaData.venue,
@@ -54,8 +55,11 @@ class IndividualConcert extends Component {
         })
     }
 
-    setSong() {
-
+    setSong(selectedSong) {
+        console.log(selectedSong)
+        this.setState({
+            selectedSong: selectedSong
+        })
     }
 
     render() {
@@ -95,8 +99,13 @@ class IndividualConcert extends Component {
                         />
                 }
                 
+                {
+                    this.state && this.state.selectedSong &&
+                        <Player
+                            songToPlay={this.state.selectedSong}
+                        />
+                }
                 
-                <Player />
                     
                     <button onClick={() => this.props.showConcertScreen()}>back</button>
 
