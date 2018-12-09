@@ -1,8 +1,10 @@
 /* eslint-disable no-console */
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import spinner from '../images/spinner.gif'
+import Player from './Player'
+import TrackList from './TrackList'
 
 class IndividualConcert extends Component {
     constructor(props) {
@@ -10,16 +12,13 @@ class IndividualConcert extends Component {
         this.state = {
             loading: true,
             trackList: null,
-            metaData: {
-
-            }
+            metaData: {}
         }
-        
+        this.setSong = this.setSong.bind(this)
     }
 
     componentDidMount () {
         
-
         // make api call for concert data on component mount
         let url = 'http://localhost:3000/concert/' + this.props.concertToPlay
         console.log(url)
@@ -53,10 +52,14 @@ class IndividualConcert extends Component {
         }).catch(function (error) {
             console.log(error)
         })
+    }
+
+    setSong() {
 
     }
 
     render() {
+
         let { coverage } = this.state.metaData,
             { venue } = this.state.metaData,
             { runtime } = this.state.metaData,
@@ -74,18 +77,29 @@ class IndividualConcert extends Component {
                 }
                 {
                     this.state && this.state.metaData &&
-                    <div>
-                        <p>{ coverage ? coverage : '' }</p>
-                        <p>{ venue ? venue : '' }</p>
-                        <p>{ runtime ? runtime : '' }</p>
-                        <p>{ date ? date : '' }</p>
-                        <p>{ lineage ? lineage : '' }</p>
-                        <p>{ notes ? notes : '' }</p>
-                        <p>{ source ? source : '' }</p>
-                    </div>
+                        <div>
+                            <p>{ coverage ? coverage : '' }</p>
+                            <p>{ venue ? venue : '' }</p>
+                            <p>{ runtime ? runtime : '' }</p>
+                            <p>{ date ? date : '' }</p>
+                            <p>{ lineage ? lineage : '' }</p>
+                            <p>{ notes ? notes : '' }</p>
+                            <p>{ source ? source : '' }</p>
+                        </div>
+                }
+                {
+                    this.state && this.state.trackList &&
+                        <TrackList
+                            trackList={ this.state.trackList }
+                            setSong={ this.setSong }
+                        />
                 }
                 
+                
+                <Player />
+                    
                     <button onClick={() => this.props.showConcertScreen()}>back</button>
+
                 </div>
             </>
         );
