@@ -56,7 +56,7 @@ class ConcertSearchResults extends Component {
                 <p>{this.props.concerts[0][item].title}</p>
             </div>
         ))
-        console.log(this.props.concerts)
+        // console.log(this.props.concerts)
         return structuredData
     }
    

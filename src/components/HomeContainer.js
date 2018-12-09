@@ -60,7 +60,7 @@ class HomeContainer extends Component {
             showIndividualConcert: !this.state.showIndividualConcert,
             selectedConcert: selectedConcert 
         }, () => {
-            console.log(this.state.selectedConcert)
+            // console.log(this.state.selectedConcert)
         })
     }
 

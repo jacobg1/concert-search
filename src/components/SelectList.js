@@ -16,7 +16,7 @@ class SelectList extends Component {
 
     componentDidMount() {
   
-        console.log(artistYearList)
+        // console.log(artistYearList)
        
     }
     getYears(e) {
@@ -27,7 +27,7 @@ class SelectList extends Component {
             yearOptions: [' '],
             year: ''
         }, function () {
-            console.log(this.state.year, this.state.artist)
+            // console.log(this.state.year, this.state.artist)
             let years = artistYearList[this.state.artist] || [' ']
             this.setState({
                 yearOptions: years
@@ -36,7 +36,7 @@ class SelectList extends Component {
     }
     setYear(e) {
         this.setState({ year: e.target.value}, function () {
-            console.log(this.state.year, this.state.artist)
+            // console.log(this.state.year, this.state.artist)
         })
     }
     render() {
