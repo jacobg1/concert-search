@@ -6,7 +6,7 @@ class Player extends Component {
 
     
     componentDidUpdate () {
-        console.log(this.props.songToPlay)
+        // console.log(this.props.songToPlay)
 
     }
     render() {
@@ -17,6 +17,7 @@ class Player extends Component {
                     controls 
                     autoPlay 
                     src={ this.props.songToPlay } 
+                    onEnded={() => this.props.nextSong()}
                 />
             </>
         );
@@ -26,5 +27,6 @@ class Player extends Component {
 export default Player;
 
 Player.propTypes = {
-    songToPlay: PropTypes.string
+    songToPlay: PropTypes.string,
+    nextSong: PropTypes.func.isRequired
 }
