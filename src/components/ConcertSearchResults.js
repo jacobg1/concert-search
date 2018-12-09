@@ -9,11 +9,14 @@ class ConcertSearchResults extends Component {
             concertIndex: 0,
             nextResults: []
         }
+        // binding this on click function
         this.increaseConcertIndex = this.increaseConcertIndex.bind(this)
     }
    
     componentDidUpdate(prevProps) {
         // console.log(Object.keys(this.props.concerts).length, (this.state.concertIndex - 1))
+
+        // check if props have changed, if they have, show new results
         if (prevProps.concerts !== this.props.concerts) {
             // const newResults = Object.keys(this.props.concerts[0]).map((item) => (
             //     <div className="individual-concert" key={this.props.concerts[0][item].id}>
@@ -23,6 +26,7 @@ class ConcertSearchResults extends Component {
             // ))
             let newResults = this.returnDataStructure() 
 
+            // set state with new results
             this.setState({
                 nextResults: [...newResults],
                 concertIndex: 0
@@ -31,14 +35,24 @@ class ConcertSearchResults extends Component {
             })
         }
     }
+
     componentDidMount () {
+
+       // load initial data 
        this.loadData()
     //    console.log(this.props.concerts)
     }
+
     returnDataStructure () {
+
+        // helper to load initial data
         const structuredData = Object.keys(this.props.concerts[0]).map((item) => (
-            <div className="individual-concert" onClick={() => this.props.showConcertScreen()} key={this.props.concerts[0][item].id}>
-                <h3>{this.props.concerts[0][item].id}</h3>
+            <div 
+                className="individual-concert" 
+                onClick={() => this.props.showConcertScreen(this.props.concerts[0][item].identifier)} 
+                key={this.props.concerts[0][item].id}
+            >
+                <h3>{this.props.concerts[0][item].identifier}</h3>
                 <p>{this.props.concerts[0][item].title}</p>
             </div>
         ))
@@ -56,6 +70,7 @@ class ConcertSearchResults extends Component {
         // ))
         let initialResults = this.returnDataStructure()
 
+        // merge in new results
         this.setState({
             nextResults: [...this.state.nextResults, ...initialResults]
         }, () => {
@@ -64,18 +79,26 @@ class ConcertSearchResults extends Component {
     }
 
     increaseConcertIndex () {
-       
+
+            // increase counter and then display the next chunk
             this.setState({
                 concertIndex: this.state.concertIndex + 1
             }, () => {
 
                 const nextChunk = Object.keys(this.props.concerts[this.state.concertIndex]).map((item) => (
-                    <div className="individual-concert" key={ this.props.concerts[this.state.concertIndex][item].id }>
-                        <h3>{ this.props.concerts[this.state.concertIndex][item].id} </h3>
+                    <div 
+                        className="individual-concert" 
+                        key={ this.props.concerts[this.state.concertIndex][item].id }
+                        onClick={() => this.props.showConcertScreen(this.props.concerts[this.state.concertIndex][item].identifier)} 
+                    >
+                        
+                        <h3>{ this.props.concerts[this.state.concertIndex][item].id } </h3>
+                        <h3>{ this.props.concerts[this.state.concertIndex][item].identifier } </h3>
                         <p>{ this.props.concerts[this.state.concertIndex][item].title }</p>
                     </div>
                 ))
 
+                // merge in next chunk to state array
                 this.setState({
                     nextResults: [...this.state.nextResults, ...nextChunk]
                 }, () => {
@@ -83,9 +106,6 @@ class ConcertSearchResults extends Component {
 
                 })
             })
-     
-        
-        
     }
 
     render() {
