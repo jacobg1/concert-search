@@ -14,12 +14,17 @@ class TrackList extends Component {
     render() {
         const showTrackList = Object.keys(this.props.trackList).map((song, i) => {
             return <div key={i}>
-                      <p>{this.props.trackList[song].title}</p>
+                      <p>
+                        <span 
+                            onClick={() => this.props.setSong(this.props.trackList[song].playUrl)}
+                        >play</span>
+
+                          {this.props.trackList[song].title}
+                      </p>
                    </div>
         })
         return (
             <>
-                <h1>Track list goes here</h1>
                 { showTrackList }
             </>
         );
@@ -29,5 +34,6 @@ class TrackList extends Component {
 export default TrackList;
 
 TrackList.propTypes = {
-    trackList: PropTypes.array.isRequired
+    trackList: PropTypes.array.isRequired,
+    setSong: PropTypes.func.isRequired
 }
