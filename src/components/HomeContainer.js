@@ -2,16 +2,23 @@
 import React, { Component } from 'react';
 import SelectList from './SelectList';
 import ConcertSearchResults from './ConcertSearchResults';
+import IndividualConcert from './IndividualConcert';
+
 import axios from 'axios'
 
 class HomeContainer extends Component {
-    constructor (props) {
-        super(props)
+    constructor () {
+        super()
         this.state = {
             searchResults: null,
+            showIndividualConcert: false,
+            selectedArtist: '',
+            selectedYear: ''
         }
         this.makeSearch = this.makeSearch.bind(this)
+        this.showConcertScreen = this.showConcertScreen.bind(this)
     }
+
     makeSearch(e, searchArtist, searchYear) {
         
        e.preventDefault()
@@ -30,6 +37,8 @@ class HomeContainer extends Component {
 
                 this.setState({
                     searchResults: response.data,
+                    selectedArtist: searchArtist,
+                    selectedYear: searchYear
                 })
         
            }).catch(function(error) {
@@ -38,23 +47,47 @@ class HomeContainer extends Component {
        }
     }
 
+    showConcertScreen () {
+        this.setState({ showIndividualConcert: !this.state.showIndividualConcert })
+    }
+
     render() {
 
         return (
-            <>
-                <h1>{ this.state.searchChoice }</h1>
-                        
-                        <SelectList
-                            makeSearch={ this.makeSearch }
-                        />
+            <>                        
+                <SelectList
+                    makeSearch={ this.makeSearch }
+                />
 
-                    { 
-                        this.state && this.state.searchResults && 
-                        
-                            <ConcertSearchResults 
-                                concerts={ this.state.searchResults }
-                            />
+                <h2>Searching for:</h2>
+                
+                    {
+                        this.state && this.state.selectedArtist &&
+                            <span style={{ fontSize: 25 }}>{ this.state.selectedArtist }</span>
                     }
+
+                    {
+                        this.state && this.state.selectedYear &&
+                            <span style={{ fontSize: 25 }}>, { this.state.selectedYear }</span>
+                    }
+
+                        { 
+                            this.state && this.state.searchResults && !this.state.showIndividualConcert && 
+
+                                <ConcertSearchResults 
+                                    concerts={ this.state.searchResults }
+                                    showConcertScreen= { this.showConcertScreen }
+                                />
+                        }
+
+                        {
+                            this.state && this.state.showIndividualConcert &&
+
+                                <IndividualConcert 
+                                    showConcertScreen={ this.showConcertScreen }
+                                />
+                        }
+
             </>
         );
     }
