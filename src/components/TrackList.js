@@ -72,7 +72,7 @@ class TrackList extends Component {
                           }
                             <span> track { i + 1 } of { trackListLength }</span>
                             <span
-                                onClick={() => this.props.setPlayList(i)}
+                                onClick={() => this.props.addToPlayList(i)}
                             > add to play list</span>
                       </p>
                    </div>
@@ -96,7 +96,7 @@ export default TrackList;
 TrackList.propTypes = {
     trackList: PropTypes.array.isRequired,
     setSong: PropTypes.func.isRequired,
-    setPlayList: PropTypes.func.isRequired,
+    addToPlayList: PropTypes.func.isRequired,
     checkSong: PropTypes.number,
     checkType: PropTypes.bool
 }
