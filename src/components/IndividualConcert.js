@@ -6,6 +6,7 @@ import spinner from '../images/spinner.gif'
 import Player from './Player'
 import TrackList from './TrackList'
 import PlayList from './PlayList'
+import unique from '../util/uniqueArray'
 
 class IndividualConcert extends Component {
     constructor(props) {
@@ -189,7 +190,7 @@ class IndividualConcert extends Component {
         let newTrackArray = [...this.state.playList, ...newTrack]
 
         this.setState({
-            playList: this.uniq(newTrackArray, 'songUrl'),
+            playList: unique(newTrackArray, 'songUrl'),
         }, () => {
             // console.log(this.state.playList)
             localStorage.setItem('playlist', JSON.stringify(this.state.playList))
@@ -197,13 +198,13 @@ class IndividualConcert extends Component {
         })
     }
 
-    uniq(a, param) {
-        return a.filter(function (item, pos, array) {
-            return array.map(function (mapItem) {
-                return mapItem[param]
-            }).indexOf(item[param]) === pos
-        })
-    }   
+    // uniq(a, param) {
+    //     return a.filter(function (item, pos, array) {
+    //         return array.map(function (mapItem) {
+    //             return mapItem[param]
+    //         }).indexOf(item[param]) === pos
+    //     })
+    // }   
 
     render() {
 
