@@ -11,7 +11,7 @@ class HomeContainer extends Component {
         super()
         this.state = {
             searchResults: null,
-            showIndividualConcert: false,
+            // showIndividualConcert: false,
             selectedArtist: '',
             selectedYear: '',
             selectedConcert: ''
@@ -53,14 +53,14 @@ class HomeContainer extends Component {
            })
        }
     }
-
+    
     showConcertScreen (selectedConcert) {
         // toggle individual concert screen
         this.setState({ 
-            showIndividualConcert: !this.state.showIndividualConcert,
+            // showIndividualConcert: !this.state.showIndividualConcert,
             selectedConcert: selectedConcert 
         }, () => {
-            // console.log(this.state.selectedConcert)
+            console.log(this.state.selectedConcert)
         })
     }
 
@@ -73,7 +73,7 @@ class HomeContainer extends Component {
         return (
             <>  
                 {
-                    this.state && !this.state.selectedConcert &&
+                    this.state &&
                         <SelectList
                             makeSearch={this.makeSearch}
                         />
@@ -92,7 +92,7 @@ class HomeContainer extends Component {
                     }
 
                         { 
-                            this.state && this.state.searchResults && !this.state.selectedConcert && 
+                            this.state && this.state.searchResults && 
 
                                 <ConcertSearchResults 
                                     concerts={ this.state.searchResults }
