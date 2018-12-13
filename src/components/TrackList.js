@@ -73,7 +73,7 @@ class TrackList extends Component {
                             <span> track { i + 1 } of { trackListLength }</span>
                             <span
                                 onClick={() => this.props.addToPlayList(i)}
-                            > add to play list</span>
+                            > +</span>
                       </p>
                    </div>
         })
