@@ -22,7 +22,7 @@ class IndividualConcert extends Component {
         this.setSong = this.setSong.bind(this)
         this.nextSong = this.nextSong.bind(this)
         this.prevSong = this.prevSong.bind(this)
-        this.setPlayList = this.setPlayList.bind(this)
+        this.addToPlayList= this.addToPlayList.bind(this)
         this.setPlayListSong = this.setPlayListSong.bind(this)
 
     }
@@ -58,11 +58,10 @@ class IndividualConcert extends Component {
             })
         })
         
-
         let storedPlayList = localStorage.getItem('playlist')
+
         if (storedPlayList) {
             let parsePlayList = JSON.parse(storedPlayList)
-            console.log(parsePlayList)
             this.setState({
                 playList: [...parsePlayList]
             })
@@ -93,7 +92,7 @@ class IndividualConcert extends Component {
     }
 
     setPlayListSong(playListSong, selectedIndex) {
-        console.log(playListSong)
+        // console.log(playListSong)
         this.setState({ 
                 selectedSong: playListSong, 
                 songIndex: selectedIndex,
@@ -104,69 +103,77 @@ class IndividualConcert extends Component {
     }
 
     nextSong () {
-        let trackListLength = Object.keys(this.state.trackList).length
-        let playListLength = Object.keys(this.state.playList).length
-
-        if (!this.state.isPlayListSong) {
-            if (this.state.songIndex === (trackListLength - 1)) {
-                // this.setState({
-                //     selectedSong: this.state.trackList[0].playUrl,
-                //     songIndex: 0
-                // })
-                this.setSong(this.state.trackList[0].playUrl, 0)
-
-            } else {
-                // this.setState({
-                //     selectedSong: this.state.trackList[this.state.songIndex + 1].playUrl,
-                //     songIndex: this.state.songIndex + 1
-                // })
-                this.setSong(this.state.trackList[this.state.songIndex + 1].playUrl, (this.state.songIndex + 1))
-            }
-
-        } else {
-            if (this.state.songIndex === (playListLength - 1)) {
-                // this.setState({
-                //     selectedSong: this.state.trackList[0].playUrl,
-                //     songIndex: 0
-                // })
-                this.setPlayListSong(this.state.playList[0].songUrl, 0)
-
-            } else {
-                // this.setState({
-                //     selectedSong: this.state.trackList[this.state.songIndex + 1].playUrl,
-                //     songIndex: this.state.songIndex + 1
-                // })
-                this.setPlayListSong(this.state.playList[this.state.songIndex + 1].songUrl, (this.state.songIndex + 1))
-            }
-            
-
-        }
         
+        let { songIndex } = this.state
+
+        // process next song if the user is listing to a tracklist song
+        if (!this.state.isPlayListSong) {
+
+            let { trackList } = this.state,
+                trackListLength = Object.keys(trackList).length
+
+            if (songIndex === (trackListLength - 1)) {
+
+                this.setSong(trackList[0].playUrl, 0)
+            } else {
+                this.setSong(trackList[songIndex + 1].playUrl, (songIndex + 1))
+            }
+
+        // process next song if user is listing to a playlist song
+        } else {
+
+            let { playList } = this.state,
+                playListLength = Object.keys(playList).length
+
+            // if user is on last track, go to beginning 
+            if (songIndex === (playListLength - 1)) {
+                this.setPlayListSong(playList[0].songUrl, 0)
+
+            // otherwise just go to next song
+            } else {
+                this.setPlayListSong(playList[songIndex + 1].songUrl, (songIndex + 1))
+            }
+        }
     }
 
     prevSong() {
         console.log(this.state.songIndex)
-        let trackListLength = Object.keys(this.state.trackList).length
+        let { songIndex } = this.state
 
-        if (this.state.songIndex === 0) {
-            this.setState({
-                selectedSong: this.state.trackList[trackListLength - 1].playUrl,
-                songIndex: trackListLength - 1,
-                isPlayListSong: false
-            })
+        // process next song if the user is listing to a tracklist song
+        if (!this.state.isPlayListSong) {
 
+            let { trackList } = this.state,
+                trackListLength = Object.keys(trackList).length
+
+            // if user is on first track, go to last track
+            if (songIndex === 0) {
+                this.setSong(trackList[trackListLength - 1].playUrl, (trackListLength - 1))
+
+            // otherwise just go to previous song
+            } else {
+                this.setSong(trackList[songIndex - 1].playUrl, (songIndex - 1))
+            }
+
+        // process previous song if user is listing to a playlist song
         } else {
-            this.setState({
-                songIndex: this.state.songIndex - 1,
-                selectedSong: this.state.trackList[this.state.songIndex - 1].playUrl,
-                isPlayListSong: false
-            }, () => {
-                console.log(this.state.songIndex)
-            })
+
+            let { playList } = this.state,
+                playListLength = Object.keys(playList).length
+
+            // if user is on first track, go to last track
+            if (songIndex === 0) {
+                this.setPlayListSong(playList[playListLength - 1].songUrl, (playListLength - 1))
+
+            // otherwise just go to previous song
+            } else {
+                this.setPlayListSong(playList[songIndex - 1].songUrl, (songIndex - 1))
+            }
         }
     }
-    setPlayList(songIndex, playListSongIndex) {
-        console.log(songIndex)
+
+    addToPlayList(songIndex) {
+
         let name = this.state.trackList[songIndex].title
             ? this.state.trackList[songIndex].title
             : this.state.trackList[songIndex].name
@@ -177,20 +184,16 @@ class IndividualConcert extends Component {
             name: name,
             songUrl: this.state.trackList[songIndex].playUrl,
             id: songIndex
-
         }]
+        
         let newTrackArray = [...this.state.playList, ...newTrack]
 
-
         this.setState({
-
             playList: this.uniq(newTrackArray, 'songUrl'),
-            songIndex: playListSongIndex,
-            isPlayListSong: true
         }, () => {
-            console.log(this.state.playList)
+            // console.log(this.state.playList)
             localStorage.setItem('playlist', JSON.stringify(this.state.playList))
-            console.log(this.state.isPlayListSong)
+            // console.log(this.state.isPlayListSong)
         })
     }
 
@@ -236,7 +239,7 @@ class IndividualConcert extends Component {
                         <TrackList
                             trackList={ this.state.trackList }
                             setSong={ this.setSong }
-                            setPlayList={ this.setPlayList }
+                            addToPlayList={ this.addToPlayList }
                             checkSong={ this.state.songIndex }
                             checkType={ this.state.isPlayListSong }
                         />
