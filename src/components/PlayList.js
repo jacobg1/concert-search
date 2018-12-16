@@ -1,23 +1,31 @@
+/* eslint-disable no-console */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 
 class PlayList extends Component {
-    // constructor(props) {
-    //     super(props)
-    // }
+    
     render() {
         let { checkType } = this.props,
-            { checkSong } = this.props,
-            { playList } = this.props
+            { playList } = this.props,
+            { selectedSong } = this.props
             
         let showPlayList = Object.keys(playList).map((song, i) => {
+
+            let { songUrl } = playList[song],
+                { name } = playList[song],
+                { id } = playList[song]
+
             return <div key={i}>
-                      <p 
-                        className={( checkType && i === checkSong ) ? 'active' : '' }
-                        onClick={() => this.props.setPlayListSong( playList[song].songUrl, i )}
+                      <span 
+                        className={(checkType && songUrl === selectedSong ) ? 'active' : '' }
+                        onClick={() => this.props.setPlayListSong( songUrl, id )}
                       >
-                        { playList[song].name }
-                      </p>
+                        { name }
+                      </span>
+                      <span 
+                        onClick={() => this.props.removeFromPlayList(i)}
+                        className={(checkType && songUrl === selectedSong ? 'delete-active' : '')}
+                      > -</span>
                   </div>
         })
         return (
@@ -34,7 +42,8 @@ export default PlayList
 PlayList.propTypes = {
     playList: PropTypes.array.isRequired,
     setPlayListSong: PropTypes.func.isRequired,
-    checkSong: PropTypes.number,
-    checkType: PropTypes.bool
+    checkType: PropTypes.bool,
+    removeFromPlayList: PropTypes.func.isRequired,
+    selectedSong: PropTypes.string
     
 }
