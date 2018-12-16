@@ -63,6 +63,15 @@ class SelectList extends Component {
         
         return (
             <>
+                {
+                    this.state && this.state.artist &&
+                        <span>{this.state.artist}</span>
+                }
+                {
+                    this.state && this.state.year && this.state.year !== ' ' &&
+                        <span>, { this.state.year }</span>
+                }
+
                 <form onSubmit={
                     (e) => this.props.makeSearch(e, this.state.artist, this.state.year)
                 }>
