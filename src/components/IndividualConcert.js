@@ -126,6 +126,11 @@ class IndividualConcert extends Component {
                 this.setSong(trackList[songIndex + 1].playUrl, (songIndex + 1))
             }
 
+            // switch back to tracklist screen
+            this.setState({
+                playListScreen: false
+            })
+
         // process next song if user is listing to a playlist song
         } else {
 
@@ -140,6 +145,11 @@ class IndividualConcert extends Component {
             } else {
                 this.setPlayListSong(playList[index + 1].songUrl, (index + 1))
             }
+
+            // switch to playlist screen
+            this.setState({
+                playListScreen: true
+            })
         }
     }
 
@@ -161,6 +171,11 @@ class IndividualConcert extends Component {
             } else {
                 this.setSong(trackList[songIndex - 1].playUrl, (songIndex - 1))
             }
+            
+            // switch to tracklist screen
+            this.setState({
+                playListScreen: false
+            })
 
         // process previous song if user is listing to a playlist song
         } else {
@@ -177,6 +192,11 @@ class IndividualConcert extends Component {
             } else {
                 this.setPlayListSong(playList[index - 1].songUrl, (index - 1))
             }
+
+            // switch to playlist screen
+            this.setState({
+                playListScreen: true
+            })
         }
     }
 
@@ -227,9 +247,14 @@ class IndividualConcert extends Component {
         this.setState({
             playList: newArray
         }, () => {
-            
+            if(!this.state.playList.length) {
+                this.setState({
+                    playListScreen: false
+                })
+            }
             console.log(this.state.playList)
             localStorage.setItem('playlist', JSON.stringify(this.state.playList))
+
         })
     }
 
@@ -241,7 +266,16 @@ class IndividualConcert extends Component {
             playListScreen: !playListScreen 
         })
     }
+    checkPlayListLength () {
+       
+        let { playList } = this.state,
+            length = Object.keys(playList).length
 
+        if (length) {
+            return true
+        } 
+       
+    }
     render() {
 
         let { coverage } = this.state.metaData,
@@ -254,7 +288,6 @@ class IndividualConcert extends Component {
 
         return (
             <>  
-            
                 {
                     this.state && this.state.loading &&
                         <img src={ spinner } alt="" />
@@ -268,14 +301,15 @@ class IndividualConcert extends Component {
                             <p>{ date ? date : '' }</p>
                         </div>
                 }   
+
                 {
-                    this.state && !this.state.loading &&
+                    this.state && !this.state.loading && this.checkPlayListLength() &&
                     <span
 
                         onClick={() => this.playListSwitch()}
                     >
                         {
-                            this.state.playListScreen
+                            this.state.playListScreen 
                                 ? <img className={styles.leftArrow} src={left} alt="left-arrow"></img>
                                 : <img className={styles.rightArrow} src={right} alt="right-arrow"></img>
 
