@@ -16,6 +16,7 @@ class IndividualConcert extends Component {
             trackList: null,
             metaData: {},
             songIndex: null,
+            playListSongIndex: null,
             playList: [],
             isPlayListSong: null,
             selectedSong: '',
@@ -25,6 +26,7 @@ class IndividualConcert extends Component {
         this.prevSong = this.prevSong.bind(this)
         this.addToPlayList= this.addToPlayList.bind(this)
         this.setPlayListSong = this.setPlayListSong.bind(this)
+        this.removeFromPlayList = this.removeFromPlayList.bind(this)
 
     }
     makeConcertSearch (concert) {
@@ -80,7 +82,7 @@ class IndividualConcert extends Component {
         }
     }
     setSong(selectedSong, songIndex) {
-        console.log(selectedSong, songIndex)
+        // console.log(selectedSong, songIndex)
         this.setState({
             selectedSong: selectedSong,
             songIndex: songIndex,
@@ -96,17 +98,17 @@ class IndividualConcert extends Component {
         // console.log(playListSong)
         this.setState({ 
                 selectedSong: playListSong, 
-                songIndex: selectedIndex,
+                playListSongIndex: selectedIndex,
                 isPlayListSong: true    
             }, () => {
-            console.log(this.state.selectedSong)
+            console.log(this.state.playListSongIndex)
         })
     }
 
-    nextSong () {
+    nextSong (index) {
         
         let { songIndex } = this.state
-
+        console.log(songIndex, index)
         // process next song if the user is listing to a tracklist song
         if (!this.state.isPlayListSong) {
 
@@ -127,17 +129,17 @@ class IndividualConcert extends Component {
                 playListLength = Object.keys(playList).length
 
             // if user is on last track, go to beginning 
-            if (songIndex === (playListLength - 1)) {
+            if (index === (playListLength - 1)) {
                 this.setPlayListSong(playList[0].songUrl, 0)
 
             // otherwise just go to next song
             } else {
-                this.setPlayListSong(playList[songIndex + 1].songUrl, (songIndex + 1))
+                this.setPlayListSong(playList[index + 1].songUrl, (index + 1))
             }
         }
     }
 
-    prevSong() {
+    prevSong(index) {
         console.log(this.state.songIndex)
         let { songIndex } = this.state
 
@@ -160,15 +162,16 @@ class IndividualConcert extends Component {
         } else {
 
             let { playList } = this.state,
+                
                 playListLength = Object.keys(playList).length
 
             // if user is on first track, go to last track
-            if (songIndex === 0) {
+            if (index === 0) {
                 this.setPlayListSong(playList[playListLength - 1].songUrl, (playListLength - 1))
 
             // otherwise just go to previous song
             } else {
-                this.setPlayListSong(playList[songIndex - 1].songUrl, (songIndex - 1))
+                this.setPlayListSong(playList[index - 1].songUrl, (index - 1))
             }
         }
     }
@@ -184,27 +187,47 @@ class IndividualConcert extends Component {
         let newTrack = [{
             name: name,
             songUrl: this.state.trackList[songIndex].playUrl,
-            id: songIndex
         }]
         
         let newTrackArray = [...this.state.playList, ...newTrack]
 
         this.setState({
             playList: unique(newTrackArray, 'songUrl'),
+
         }, () => {
-            // console.log(this.state.playList)
+            this.state.playList.forEach((song, index) => {
+                song.id = index
+            });
+            console.log(this.state.playList)
+
             localStorage.setItem('playlist', JSON.stringify(this.state.playList))
             // console.log(this.state.isPlayListSong)
+
         })
     }
 
-    // uniq(a, param) {
-    //     return a.filter(function (item, pos, array) {
-    //         return array.map(function (mapItem) {
-    //             return mapItem[param]
-    //         }).indexOf(item[param]) === pos
-    //     })
-    // }   
+    // function to remove a song from the playlist
+    removeFromPlayList(songIndex) {
+        console.log(songIndex, this.state.songIndex)
+        let newArray = this.state.playList.filter((item, i) => i !== songIndex)
+       
+        newArray.forEach((song, index) => {
+            song.id = index
+        });
+        if(songIndex < this.state.playListSongIndex) {
+            console.log('true')
+            this.setState({
+                playListSongIndex: this.state.playListSongIndex - 1
+            })
+        }
+        this.setState({
+            playList: newArray
+        }, () => {
+            
+            console.log(this.state.playList)
+            localStorage.setItem('playlist', JSON.stringify(this.state.playList))
+        })
+    }
 
     render() {
 
@@ -250,6 +273,7 @@ class IndividualConcert extends Component {
                     this.state && this.state.selectedSong &&
                         <Player
                             songToPlay={ this.state.selectedSong }
+                            playListSongIndex={ this.state.playListSongIndex }
                             nextSong={ this.nextSong }
                             prevSong={ this.prevSong }
                         />
@@ -257,8 +281,10 @@ class IndividualConcert extends Component {
                 {
                     this.state && this.state.playList &&
                         <PlayList 
+                            removeFromPlayList={ this.removeFromPlayList }
                             playList={ this.state.playList }
                             setPlayListSong={ this.setPlayListSong }
+                            selectedSong={ this.state.selectedSong }
                             checkSong={ this.state.songIndex }
                             checkType={ this.state.isPlayListSong }
                         />
