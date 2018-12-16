@@ -15,21 +15,26 @@ class TrackList extends Component {
 
         let trackListLength = Object.keys(this.props.trackList).length,
             { checkType } = this.props,
-            { checkSong } = this.props,
-            { trackList } = this.props
+            { trackList } = this.props,
+            { selectedSong } = this.props
 
-        const showTrackList = Object.keys(this.props.trackList).map((song, i) => {
+        let showTrackList = Object.keys(this.props.trackList).map((song, i) => {
+
+            let { title } = trackList[song],
+                { name } = trackList[song],
+                { playUrl } = trackList[song]
+
             return <div key={i}>
-                      <p className={( !checkType && i === checkSong ) ? 'active' : '' }>
+                      <p className={( !checkType && playUrl === selectedSong ) ? 'active' : '' }>
                         <span 
-                            onClick={() => this.props.setSong( trackList[song].playUrl, i )}
+                            onClick={() => this.props.setSong( playUrl, i )}
                         >play </span>
 
                           {
-                              trackList[song].title 
-                                ? trackList[song].title
-                                : trackList[song].name
-                                ? trackList[song].name
+                              title 
+                                ? title
+                                : name
+                                ? name
                                 : ''
                           }
                             <span> track { i + 1 } of { trackListLength }</span>
@@ -55,6 +60,6 @@ TrackList.propTypes = {
     trackList: PropTypes.array.isRequired,
     setSong: PropTypes.func.isRequired,
     addToPlayList: PropTypes.func.isRequired,
-    checkSong: PropTypes.number,
-    checkType: PropTypes.bool
+    checkType: PropTypes.bool,
+    selectedSong: PropTypes.string
 }
