@@ -14,17 +14,11 @@ class ConcertSearchResults extends Component {
     }
    
     componentDidUpdate(prevProps) {
-        // console.log(Object.keys(this.props.concerts).length, (this.state.concertIndex - 1))
 
         // check if props have changed, if they have, show new results
         if (prevProps.concerts !== this.props.concerts) {
-            // const newResults = Object.keys(this.props.concerts[0]).map((item) => (
-            //     <div className="individual-concert" key={this.props.concerts[0][item].id}>
-            //         {/* <h3>{ this.props.concerts[0][item].id }</h3> */}
-            //         <p>{this.props.concerts[0][item].title}</p>
-            //     </div>
-            // ))
-            let newResults = this.returnDataStructure() 
+    
+            let newResults = this.returnDataStructure(0) 
 
             // set state with new results
             this.setState({
@@ -37,37 +31,41 @@ class ConcertSearchResults extends Component {
     }
 
     componentDidMount () {
-
        // load initial data 
        this.loadData()
-    //    console.log(this.props.concerts)
     }
 
-    returnDataStructure () {
+    returnDataStructure (index) {
+
+        let { concerts } = this.props
 
         // helper to load initial data
-        const structuredData = Object.keys(this.props.concerts[0]).map((item) => (
-            <div 
-                onClick={() => this.props.showConcertScreen(this.props.concerts[0][item].identifier)} 
-                key={this.props.concerts[0][item].id}
-            >
-                <h3>{this.props.concerts[0][item].identifier}</h3>
-                <p>{this.props.concerts[0][item].title}</p>
+        let structuredData = Object.keys(concerts[index]).map((item) => {
+
+            let { identifier } = concerts[index][item],
+                { id } = concerts[index][item],
+                { title } = concerts[index][item]
+
+            return <div
+                     onClick={() => this.props.showConcertScreen(identifier)} 
+                     key={id}
+                   >
+                    <p>
+                        {
+                            title 
+                            ? title 
+                            : identifier    
+                        }
+                    </p>
             </div>
-        ))
-        // console.log(this.props.concerts)
+        })
+        console.log(structuredData)
         return structuredData
     }
    
     loadData() {
-        // console.log('this', Object.keys(this.props.concerts).length)
-        // const initialResults = Object.keys(this.props.concerts[0]).map((item) => (
-        //     <div className="individual-concert" onClick={() => this.props.showConcertScreen()} key={ this.props.concerts[0][item].id }>
-        //         {/* <h3>{this.props.concerts[0][item].id}</h3> */}
-        //         <p>{ this.props.concerts[0][item].title }</p>
-        //     </div>
-        // ))
-        let initialResults = this.returnDataStructure()
+
+        let initialResults = this.returnDataStructure(0)
 
         // merge in new results
         this.setState({
@@ -84,19 +82,25 @@ class ConcertSearchResults extends Component {
                 concertIndex: this.state.concertIndex + 1
             }, () => {
 
-                const nextChunk = Object.keys(this.props.concerts[this.state.concertIndex]).map((item) => (
-                    <div 
-                        className="individual-concert" 
-                        key={ this.props.concerts[this.state.concertIndex][item].id }
-                        onClick={() => this.props.showConcertScreen(this.props.concerts[this.state.concertIndex][item].identifier)} 
-                    >
-                        
-                        <h3>{ this.props.concerts[this.state.concertIndex][item].id } </h3>
-                        <h3>{ this.props.concerts[this.state.concertIndex][item].identifier } </h3>
-                        <p>{ this.props.concerts[this.state.concertIndex][item].title }</p>
-                    </div>
-                ))
+                // let { concerts } = this.props,
+                //     { concertIndex } = this.state
 
+                // const nextChunk = Object.keys(concerts[concertIndex]).map((item) => {
+                //     return <div 
+                //         className="individual-concert" 
+                //         key={ concerts[concertIndex][item].id }
+                //         onClick={() => this.props.showConcertScreen(concerts[concertIndex][item].identifier)} 
+                //     >
+                //         <p>
+                //             { 
+                //               concerts[concertIndex][item].title 
+                //                 ? concerts[concertIndex][item].title 
+                //                 : concerts[concertIndex][item].identifier
+                //             }
+                //         </p>
+                //     </div>
+                // })
+                let nextChunk = this.returnDataStructure(this.state.concertIndex)
                 // merge in next chunk to state array
                 this.setState({
                     nextResults: [...this.state.nextResults, ...nextChunk]
