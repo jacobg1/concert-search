@@ -25,11 +25,10 @@ class TrackList extends Component {
                 { playUrl } = trackList[song]
 
             return <div key={i}>
-                      <p className={( !checkType && playUrl === selectedSong ) ? 'active' : '' }>
-                        <span 
-                            onClick={() => this.props.setSong( playUrl, i )}
-                        >play </span>
-
+                      <span 
+                        className={( !checkType && playUrl === selectedSong ) ? 'active' : '' }
+                        onClick={() => this.props.setSong(playUrl, i)}
+                      >
                           {
                               title 
                                 ? title
@@ -38,10 +37,12 @@ class TrackList extends Component {
                                 : ''
                           }
                             <span> track { i + 1 } of { trackListLength }</span>
-                            <span
-                                onClick={() => this.props.addToPlayList(i)}
-                            > +</span>
-                      </p>
+                      </span>
+
+                      <span
+                        onClick={() => this.props.addToPlayList(i)}
+                      > +</span>
+
                    </div>
         })
         
