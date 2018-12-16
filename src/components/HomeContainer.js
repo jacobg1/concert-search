@@ -19,7 +19,6 @@ class HomeContainer extends Component {
         // binding 'this' to passed down functions to keep context
         this.makeSearch = this.makeSearch.bind(this)
         this.showConcertScreen = this.showConcertScreen.bind(this)
-        this.setConcert = this.setConcert.bind(this)
     }
 
     makeSearch(e, searchArtist, searchYear) {
@@ -60,12 +59,8 @@ class HomeContainer extends Component {
             // showIndividualConcert: !this.state.showIndividualConcert,
             selectedConcert: selectedConcert 
         }, () => {
-            console.log(this.state.selectedConcert)
+            // console.log(this.state.selectedConcert)
         })
-    }
-
-    setConcert() {
-
     }
 
     render() {
@@ -97,7 +92,6 @@ class HomeContainer extends Component {
                                 <ConcertSearchResults 
                                     concerts={ this.state.searchResults }
                                     showConcertScreen= { this.showConcertScreen }
-                                    setConcert= { this.setConcert }
                                 />
                         }
 
