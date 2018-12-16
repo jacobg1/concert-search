@@ -48,7 +48,6 @@ class ConcertSearchResults extends Component {
         // helper to load initial data
         const structuredData = Object.keys(this.props.concerts[0]).map((item) => (
             <div 
-                className="individual-concert" 
                 onClick={() => this.props.showConcertScreen(this.props.concerts[0][item].identifier)} 
                 key={this.props.concerts[0][item].id}
             >
