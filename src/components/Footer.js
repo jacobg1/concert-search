@@ -5,7 +5,7 @@ class Footer extends Component {
         return (
             <>
                 <footer>
-                  <p>
+                  {/* <p>
                     Edit <code>src/App.js</code> and save to reload.
                   </p>
                   <a
@@ -15,7 +15,7 @@ class Footer extends Component {
                     rel="noopener noreferrer"
                   >
                     Learn React
-                  </a>
+                  </a> */}
                 </footer>
             </>
         );

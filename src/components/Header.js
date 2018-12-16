@@ -11,7 +11,7 @@ class Header extends Component {
               </Helmet>
 
               <header>
-                  <p>
+                  {/* <p>
                       Edit <code>src/App.js</code> and save to reload.
                   </p>
                   <a
@@ -21,7 +21,7 @@ class Header extends Component {
                       rel="noopener noreferrer"
                   >
                       Learn React
-                  </a>
+                  </a> */}
               </header>
             </>
         );
