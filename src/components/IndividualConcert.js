@@ -241,11 +241,12 @@ class IndividualConcert extends Component {
 
         return (
             <>  
-                <div>
+            
                 {
                     this.state && this.state.loading &&
                         <img src={ spinner } alt="" />
                 }
+
                 {
                     this.state && this.state.metaData &&
                         <div>
@@ -258,6 +259,7 @@ class IndividualConcert extends Component {
                             <p>{ source ? source : '' }</p>
                         </div>
                 }
+
                 {
                     this.state && this.state.trackList &&
                         <TrackList
@@ -278,6 +280,7 @@ class IndividualConcert extends Component {
                             prevSong={ this.prevSong }
                         />
                 }
+
                 {
                     this.state && this.state.playList &&
                         <PlayList 
@@ -288,13 +291,7 @@ class IndividualConcert extends Component {
                             checkSong={ this.state.songIndex }
                             checkType={ this.state.isPlayListSong }
                         />
-                }
-                
-                    
-                    {/* <button onClick={() => this.props.showConcertScreen()}>back</button> */}
-                    
-
-                </div>
+                }                     
             </>
         );
     }
@@ -303,6 +300,6 @@ class IndividualConcert extends Component {
 export default IndividualConcert
 
 IndividualConcert.propTypes = {
+    concertToPlay: PropTypes.string.isRequired,
     showConcertScreen: PropTypes.func.isRequired,
-    concertToPlay: PropTypes.string.isRequired
 }
