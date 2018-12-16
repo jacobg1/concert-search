@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import SelectList from './SelectList';
 import ConcertSearchResults from './ConcertSearchResults';
 import IndividualConcert from './IndividualConcert';
+import styles from './styles/HomeContainer.module.scss'
 
 import axios from 'axios'
 
@@ -11,7 +12,7 @@ class HomeContainer extends Component {
         super()
         this.state = {
             searchResults: null,
-            // showIndividualConcert: false,
+            switchScreens: false,
             selectedArtist: '',
             selectedYear: '',
             selectedConcert: ''
@@ -54,10 +55,22 @@ class HomeContainer extends Component {
     }
     
     showConcertScreen (selectedConcert) {
+        // show selected concert
+        let { switchScreens } = this.state
+        this.setState({ 
+            selectedConcert: selectedConcert,
+            switchScreens: !switchScreens  
+        }, () => {
+            // console.log(this.state.selectedConcert)
+        })
+    }
+
+    switchScreens () {
+        console.log('switch')
+        let { switchScreens } = this.state
         // toggle individual concert screen
         this.setState({ 
-            // showIndividualConcert: !this.state.showIndividualConcert,
-            selectedConcert: selectedConcert 
+            switchScreens: !switchScreens 
         }, () => {
             // console.log(this.state.selectedConcert)
         })
@@ -67,43 +80,64 @@ class HomeContainer extends Component {
 
         return (
             <>  
-                {
-                    this.state &&
-                        <SelectList
-                            makeSearch={this.makeSearch}
-                        />
-                }                      
-
-                <h2>Searching for:</h2>
-                
+                <div className={
+                    `${styles.concertResults} 
+                     ${this.state.switchScreens ? styles.hide : styles.show }`
+                }>
                     {
                         this.state && this.state.selectedArtist &&
-                            <span style={{ fontSize: 25 }}>{ this.state.selectedArtist }</span>
+                        <span style={{ fontSize: 25 }}>{this.state.selectedArtist}</span>
                     }
 
                     {
                         this.state && this.state.selectedYear &&
-                            <span style={{ fontSize: 25 }}>, { this.state.selectedYear }</span>
+                        <span style={{ fontSize: 25 }}>, {this.state.selectedYear}</span>
+                    }
+                    
+                    {
+                        this.state &&
+                            <SelectList
+                                makeSearch={this.makeSearch}
+                            />
+                    }       
+
+                    <button
+                        onClick={() => this.switchScreens()}
+                    >
+                        search
+                    </button>
+
+                    { 
+                        this.state && this.state.searchResults && 
+
+                            <ConcertSearchResults 
+                                concerts={ this.state.searchResults }
+                                showConcertScreen= { this.showConcertScreen }
+                            />
                     }
 
-                        { 
-                            this.state && this.state.searchResults && 
+                </div>  
 
-                                <ConcertSearchResults 
-                                    concerts={ this.state.searchResults }
-                                    showConcertScreen= { this.showConcertScreen }
-                                />
-                        }
+                <div className={
+                    `${styles.individualConcert} 
+                     ${this.state.switchScreens ? styles.show : styles.hide}` 
+                }>
+                    
+                    <button
+                        onClick={() => this.switchScreens()}
+                    >
+                        player
+                    </button>
+                        
+                    {
+                        this.state && this.state.selectedConcert &&
 
-                        {
-                            this.state && this.state.selectedConcert &&
-
-                                <IndividualConcert 
-                                    showConcertScreen={ this.showConcertScreen }
-                                    concertToPlay={ this.state.selectedConcert }
-                                />
-                        }
-
+                            <IndividualConcert 
+                                showConcertScreen={ this.showConcertScreen }
+                                concertToPlay={ this.state.selectedConcert }
+                            />
+                    }
+                </div>    
             </>
         );
     }
