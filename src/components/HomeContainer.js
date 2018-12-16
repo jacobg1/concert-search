@@ -45,7 +45,8 @@ class HomeContainer extends Component {
                 this.setState({
                     searchResults: response.data,
                     selectedArtist: searchArtist,
-                    selectedYear: searchYear
+                    selectedYear: searchYear,
+                    switchScreens: false
                 })
         
            }).catch(function(error) {
@@ -55,8 +56,13 @@ class HomeContainer extends Component {
     }
     
     showConcertScreen (selectedConcert) {
+
+        // return to top of screen
+        window.scroll(0, 0)
+
         // show selected concert
         let { switchScreens } = this.state
+
         this.setState({ 
             selectedConcert: selectedConcert,
             switchScreens: !switchScreens  
@@ -66,8 +72,9 @@ class HomeContainer extends Component {
     }
 
     switchScreens () {
-        console.log('switch')
+        
         let { switchScreens } = this.state
+
         // toggle individual concert screen
         this.setState({ 
             switchScreens: !switchScreens 
@@ -80,32 +87,43 @@ class HomeContainer extends Component {
 
         return (
             <>  
+                    
+                    <button
+                        className={
+                            `${styles.showConcertButton}
+                                ${this.state.selectedConcert ? styles.show : ''}`
+                        }
+                        onClick={() => this.switchScreens()}
+                    >
+                        back
+                    </button>
+                
+                
+
+                {/* {
+                    this.state && this.state.selectedArtist &&
+                    <span style={{ fontSize: 25 }}>{this.state.selectedArtist}</span>
+                }
+
+                {
+                    this.state && this.state.selectedYear &&
+                    <span style={{ fontSize: 25 }}>, {this.state.selectedYear}</span>
+                } */}
+
+                {
+                    this.state &&
+                    <SelectList
+                        makeSearch={this.makeSearch}
+                    />
+                } 
+
                 <div className={
                     `${styles.concertResults} 
                      ${this.state.switchScreens ? styles.hide : styles.show }`
                 }>
-                    {
-                        this.state && this.state.selectedArtist &&
-                        <span style={{ fontSize: 25 }}>{this.state.selectedArtist}</span>
-                    }
+                         
 
-                    {
-                        this.state && this.state.selectedYear &&
-                        <span style={{ fontSize: 25 }}>, {this.state.selectedYear}</span>
-                    }
                     
-                    {
-                        this.state &&
-                            <SelectList
-                                makeSearch={this.makeSearch}
-                            />
-                    }       
-
-                    <button
-                        onClick={() => this.switchScreens()}
-                    >
-                        search
-                    </button>
 
                     { 
                         this.state && this.state.searchResults && 
@@ -123,11 +141,7 @@ class HomeContainer extends Component {
                      ${this.state.switchScreens ? styles.show : styles.hide}` 
                 }>
                     
-                    <button
-                        onClick={() => this.switchScreens()}
-                    >
-                        player
-                    </button>
+                    
                         
                     {
                         this.state && this.state.selectedConcert &&
