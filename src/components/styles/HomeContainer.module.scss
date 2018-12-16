@@ -33,3 +33,12 @@
 .hide {
   display: none;
 }
+.leftArrow, .rightArrow {
+    width: 30px;
+}
+.leftArrow {
+    float: left;
+}
+.rightArrow {
+    float: right;
+}

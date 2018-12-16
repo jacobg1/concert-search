@@ -7,6 +7,9 @@ import Player from './Player'
 import TrackList from './TrackList'
 import PlayList from './PlayList'
 import unique from '../util/uniqueArray'
+import right from '../images/right-arrow.svg'
+import left from '../images/left-arrow.svg'
+import styles from './styles/IndividualConcert.module.scss'
 
 class IndividualConcert extends Component {
     constructor(props) {
@@ -20,6 +23,7 @@ class IndividualConcert extends Component {
             playList: [],
             isPlayListSong: null,
             selectedSong: '',
+            playListScreen: false
         }
         this.setSong = this.setSong.bind(this)
         this.nextSong = this.nextSong.bind(this)
@@ -229,6 +233,15 @@ class IndividualConcert extends Component {
         })
     }
 
+    playListSwitch () {
+
+        let { playListScreen } = this.state
+
+        this.setState({
+            playListScreen: !playListScreen 
+        })
+    }
+
     render() {
 
         let { coverage } = this.state.metaData,
@@ -254,10 +267,24 @@ class IndividualConcert extends Component {
                             <p>{ runtime ? runtime : '' }</p>
                             <p>{ date ? date : '' }</p>
                         </div>
-                }
-
+                }   
                 {
-                    this.state && this.state.trackList && !this.state.loading &&
+                    this.state && !this.state.loading &&
+                    <span
+
+                        onClick={() => this.playListSwitch()}
+                    >
+                        {
+                            this.state.playListScreen
+                                ? <img className={styles.leftArrow} src={left} alt="left-arrow"></img>
+                                : <img className={styles.rightArrow} src={right} alt="right-arrow"></img>
+
+                        }
+                    </span>
+                }
+                
+                {
+                    this.state && this.state.trackList && !this.state.loading && !this.state.playListScreen &&
                         <TrackList
                             trackList={ this.state.trackList }
                             setSong={ this.setSong }
@@ -268,7 +295,7 @@ class IndividualConcert extends Component {
                 }
                 
                 {
-                    this.state && this.state.playList && !this.state.loading &&
+                    this.state && this.state.playList && !this.state.loading && this.state.playListScreen &&
                         <PlayList 
                             removeFromPlayList={ this.removeFromPlayList }
                             playList={ this.state.playList }
@@ -279,7 +306,7 @@ class IndividualConcert extends Component {
                 }   
 
                 {
-                    this.state && this.state.selectedSong &&
+                    this.state && this.state.selectedSong && !this.state.loading &&
                     <Player
                         songToPlay={this.state.selectedSong}
                         playListSongIndex={this.state.playListSongIndex}

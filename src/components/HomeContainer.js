@@ -4,7 +4,8 @@ import SelectList from './SelectList';
 import ConcertSearchResults from './ConcertSearchResults';
 import IndividualConcert from './IndividualConcert';
 import styles from './styles/HomeContainer.module.scss'
-
+import right from '../images/right-arrow.svg'
+import left from '../images/left-arrow.svg'
 import axios from 'axios'
 
 class HomeContainer extends Component {
@@ -88,15 +89,20 @@ class HomeContainer extends Component {
         return (
             <>  
                     
-                    <button
+                    <span
                         className={
                             `${styles.showConcertButton}
                                 ${this.state.selectedConcert ? styles.show : ''}`
                         }
                         onClick={() => this.switchScreens()}
-                    >
-                        back
-                    </button>
+                    >   
+                        {
+                            this.state.switchScreens 
+                            ? <img className={styles.leftArrow} src={left} alt="left-arrow"></img>
+                            : <img className={styles.rightArrow} src={right} alt="right-arrow"></img>
+
+                        }
+                    </span>
                 
                 
 
