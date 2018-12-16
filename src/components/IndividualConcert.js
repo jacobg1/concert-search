@@ -234,10 +234,10 @@ class IndividualConcert extends Component {
         let { coverage } = this.state.metaData,
             { venue } = this.state.metaData,
             { runtime } = this.state.metaData,
-            { date } = this.state.metaData,
-            { lineage } = this.state.metaData,
-            { notes } = this.state.metaData,
-            { source } = this.state.metaData
+            { date } = this.state.metaData
+            // { lineage } = this.state.metaData,
+            // { notes } = this.state.metaData,
+            // { source } = this.state.metaData
 
         return (
             <>  
@@ -248,50 +248,45 @@ class IndividualConcert extends Component {
                 }
 
                 {
-                    this.state && this.state.metaData &&
-                        <div>
-                            <p>{ coverage ? coverage : '' }</p>
-                            <p>{ venue ? venue : '' }</p>
+                    this.state && this.state.metaData && !this.state.loading &&
+                        <div className="meta">
+                            <p>{ coverage ? coverage : '' } { venue ? ` - ${venue}` : '' }</p>
                             <p>{ runtime ? runtime : '' }</p>
                             <p>{ date ? date : '' }</p>
-                            <p>{ lineage ? lineage : '' }</p>
-                            <p>{ notes ? notes : '' }</p>
-                            <p>{ source ? source : '' }</p>
                         </div>
                 }
 
                 {
-                    this.state && this.state.trackList &&
+                    this.state && this.state.trackList && !this.state.loading &&
                         <TrackList
                             trackList={ this.state.trackList }
                             setSong={ this.setSong }
                             addToPlayList={ this.addToPlayList }
-                            checkSong={ this.state.songIndex }
                             checkType={ this.state.isPlayListSong }
+                            selectedSong={ this.state.selectedSong }
                         />
                 }
                 
                 {
-                    this.state && this.state.selectedSong &&
-                        <Player
-                            songToPlay={ this.state.selectedSong }
-                            playListSongIndex={ this.state.playListSongIndex }
-                            nextSong={ this.nextSong }
-                            prevSong={ this.prevSong }
-                        />
-                }
-
-                {
-                    this.state && this.state.playList &&
+                    this.state && this.state.playList && !this.state.loading &&
                         <PlayList 
                             removeFromPlayList={ this.removeFromPlayList }
                             playList={ this.state.playList }
                             setPlayListSong={ this.setPlayListSong }
                             selectedSong={ this.state.selectedSong }
-                            checkSong={ this.state.songIndex }
                             checkType={ this.state.isPlayListSong }
                         />
-                }                     
+                }   
+
+                {
+                    this.state && this.state.selectedSong &&
+                    <Player
+                        songToPlay={this.state.selectedSong}
+                        playListSongIndex={this.state.playListSongIndex}
+                        nextSong={this.nextSong}
+                        prevSong={this.prevSong}
+                    />
+                }               
             </>
         );
     }
