@@ -6,18 +6,30 @@
 
 .concertResults {
   color: red;
+  width: 80%;
+  margin: 0 auto;
+  max-height: 600px;
+  overflow-x: auto;
+  overflow-y: auto;
   @include breakpoint(768px) {
-      color: blue;
+    // color: blue;
   }
 }
 
 .individualConcert {
-  color: red;
+//   color: red;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.showConcertButton {
+  display: none;
 }
 
 .show {
-    display: block;
+  display: block;
 }
+
 .hide {
-    display: none;
+  display: none;
 }
