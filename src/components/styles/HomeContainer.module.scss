@@ -1,0 +1,23 @@
+@import './breakpoints.scss';
+
+.test {
+  display: none;
+}
+
+.concertResults {
+  color: red;
+  @include breakpoint(768px) {
+      color: blue;
+  }
+}
+
+.individualConcert {
+  color: red;
+}
+
+.show {
+    display: block;
+}
+.hide {
+    display: none;
+}
