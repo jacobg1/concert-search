@@ -9,45 +9,7 @@ class TrackList extends Component {
         this.state = {
             playList: null,
         }
-    }
-
-    componentDidMount () {
-        console.log(this.props.trackList[0])
-    }
-   
-    // addToPlayList(songIndex) {
-    //     console.log(songIndex)
-    //     let name = this.props.trackList[songIndex].title 
-    //         ? this.props.trackList[songIndex].title 
-    //         : this.props.trackList[songIndex].name 
-    //         ? this.props.trackList[songIndex].name 
-    //         : ''
-
-    //     let newTrack = [{
-    //         name: name,
-    //         songUrl: this.props.trackList[songIndex].playUrl,
-    //         id: songIndex
-
-    //     }]
-    //     let newTrackArray = [...this.state.playList, ...newTrack]
-
-    
-    //     this.setState({
-            
-    //         playList: this.uniq(newTrackArray, 'songUrl')
-    //     }, () => {
-    //         console.log(this.state.playList)
-    //     })
-    //    this.props.setPlayList()
-    // }
-
-    // uniq(a, param) {
-    //     return a.filter(function (item, pos, array) {
-    //         return array.map(function (mapItem) {
-    //             return mapItem[param]
-    //         }).indexOf(item[param]) === pos
-    //     })
-    // }   
+    }  
 
     render() {
 
@@ -82,10 +44,6 @@ class TrackList extends Component {
             <>
             <h1>tracklist:</h1>
                 { showTrackList }
-                {/* {
-                    this.state && this.state.playList && 
-                        <PlayList playLisst={ this.state.playList }/>
-                } */}
             </>
         );
     }
