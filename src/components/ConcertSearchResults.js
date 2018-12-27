@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
+import styles from './styles/ConcertSearchResults.module.scss'
 
 class ConcertSearchResults extends Component {
     constructor(props) {
@@ -122,7 +123,12 @@ class ConcertSearchResults extends Component {
                 {
                     (this.state.concertIndex + 1) !== Object.keys(this.props.concerts).length 
 
-                        ? <button onClick={() => this.increaseConcertIndex()}>Load more</button>
+                        ? <button 
+                            className={ styles.loadMore }
+                            onClick={() => this.increaseConcertIndex()}
+                          >
+                            Load more
+                          </button>
 
                         : Object.keys(this.props.concerts).length === 1
 
