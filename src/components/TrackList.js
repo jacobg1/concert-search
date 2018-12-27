@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 // import PlayList from './PlayList'
 import checkMark from '../images/check-solid.svg'
+import plusSign from '../images/plus.svg'
 import styles from './styles/TrackList.module.scss'
 
 class TrackList extends Component {
@@ -32,28 +33,27 @@ class TrackList extends Component {
                                 ? name
                                 : ''
                           }
-                            <span> track { i + 1 } of { trackListLength }</span>
+                            {/* <span> track { i + 1 } of { trackListLength }</span> */}
                       </span>
 
                       <span
                         onClick={() => this.props.addToPlayList(i)}
+                        className={ styles.addPlayList }
                       > 
-                      {
-                          !this.props.checkPlayList(playUrl)
-                            ? '+'
-                            : <img className={styles.checkMark} src={checkMark}></img>
-        }
-        
+                        {
+                            !this.props.checkPlayList(playUrl)
+                                ? <img className={ styles.plus } src={ plusSign } alt="add to playlist"></img>
+                                : <img className={ styles.checkMark } src={ checkMark } alt="check-mark"></img>
+                        }
                       </span>
-
                    </div>
         })
         
         return (
-            <>
-            <h1>tracklist:</h1>
-                { showTrackList }
-            </>
+            <div className={ styles.trackList }>
+                <h3>{ trackListLength } tracks</h3>
+                    { showTrackList }
+            </div>
         );
     }
 }
