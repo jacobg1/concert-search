@@ -59,7 +59,7 @@ class ConcertSearchResults extends Component {
                     </p>
             </div>
         })
-        console.log(structuredData)
+        // console.log(structuredData)
         return structuredData
     }
    
