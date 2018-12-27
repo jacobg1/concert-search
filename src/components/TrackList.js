@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 // import PlayList from './PlayList'
 import checkMark from '../images/check-solid.svg'
-import plusSign from '../images/plus.svg'
+import plusSign from '../images/add.svg'
 import styles from './styles/TrackList.module.scss'
 
 class TrackList extends Component {
@@ -21,32 +21,35 @@ class TrackList extends Component {
                 { name } = trackList[song],
                 { playUrl } = trackList[song]
 
-            return <div key={i}>
-                      <span 
-                        className={( !checkType && playUrl === selectedSong ) ? 'active' : '' }
-                        onClick={() => this.props.setSong(playUrl, i)}
-                      >
-                          {
-                              title 
-                                ? title
-                                : name
-                                ? name
-                                : ''
-                          }
-                            {/* <span> track { i + 1 } of { trackListLength }</span> */}
-                      </span>
-
-                      <span
+            return <div 
+                      className={styles.trackHolder}    
+                      key={i}
+                    >
+                    <div onClick={() => this.props.setSong(playUrl, i)}>
+                        <span 
+                            className={( !checkType && playUrl === selectedSong ) ? 'active' : '' }
+                        >
+                            {
+                                title 
+                                    ? title
+                                    : name
+                                    ? name
+                                    : ''
+                            }
+                                {/* <span> track { i + 1 } of { trackListLength }</span> */}
+                        </span>
+                    </div>
+                    <span
                         onClick={() => this.props.addToPlayList(i)}
                         className={ styles.addPlayList }
-                      > 
-                        {
-                            !this.props.checkPlayList(playUrl)
-                                ? <img className={ styles.plus } src={ plusSign } alt="add to playlist"></img>
-                                : <img className={ styles.checkMark } src={ checkMark } alt="check-mark"></img>
-                        }
-                      </span>
-                   </div>
+                    > 
+                    {
+                        !this.props.checkPlayList(playUrl)
+                            ? <img className={ styles.plus } src={ plusSign } alt="add to playlist"></img>
+                            : <img className={ styles.checkMark } src={ checkMark } alt="check-mark"></img>
+                    }
+                    </span>
+                </div>   
         })
         
         return (
