@@ -1,12 +1,20 @@
 .leftArrow,
 .rightArrow {
-  width: 30px;
+  width: 15px;
 }
 
 .leftArrow {
-  float: left;
+  float: right;
 }
 
 .rightArrow {
   float: right;
+}
+.meta {
+  p {
+      margin: 0;
+      text-align: left;
+      font-size: 15px;
+      margin-top: 5px;
+  }
 }

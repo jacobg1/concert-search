@@ -1,0 +1,14 @@
+.loadMore {
+    appearance: none;
+    width: 100%;
+    line-height: 26px;
+    // margin-top: 13px;
+    border: 1px solid;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #eee;
+
+    &:focus {
+        outline: none;
+    }
+}

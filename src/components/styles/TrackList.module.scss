@@ -1,4 +1,42 @@
 .checkMark {
-    width: 20px;
     // display: inline;
+    width: 13px;
+    // padding-right: 7px;
+    // vertical-align: text-top;
+}
+.plus {
+    width: 13px;
+    // display: inline-block;
+    // vertical-align: text-top;
+    // padding-right: 7px;
+}
+.trackList {
+    // color: blue;
+    text-align: left;
+    // max-height: 100vh;
+    // overflow-x: auto;
+    // overflow-y: auto;
+    h3 {
+        font-size: 23px;
+    }
+    span {
+        font-size: 16px;
+        max-width: 195px;
+        display: inline-block;
+        word-break: break-all;
+        line-height: 22px;
+    }
+    div {
+        background-color: #eee;
+        border: 1px solid black;
+        // line-height: 35px;
+        padding: 10px;
+        position: relative;
+    }
+    .addPlayList {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+    }
 }

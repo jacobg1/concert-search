@@ -1,0 +1,56 @@
+#dropDown {
+  margin-top: 26px;
+
+  select {
+    appearance: none;
+    border: 1px solid black;
+    background: url("../../images/arrow_down.svg") 98% / 25px no-repeat #eee;
+    display: block;
+    margin: 9px auto;
+    width: 85%;
+    border-radius: 0;
+    line-height: 32px;
+    color: #c11717;
+    font-weight: bold;
+    padding-left: 15px;
+
+  }
+
+  select::-ms-expand {
+    display: none;
+  }
+
+}
+
+.selectHolder {
+  position: relative;
+  padding-top: 11px;
+
+  span {
+
+    font-size: 14px;
+    display: inline-block;
+    font-weight: bold;
+    color: #c11717;
+    //   margin-bottom: -26px;
+  }
+
+  .choices {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  button {
+    appearance: none;
+    float: right;
+    margin-right: 7.5%;
+    border: 1px solid black;
+    line-height: 27px;
+    font-weight: bold;
+    width: 21%;
+    background-color: #eee;
+    color: #c11717;
+  }
+}
