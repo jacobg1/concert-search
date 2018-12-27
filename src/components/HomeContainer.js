@@ -4,8 +4,8 @@ import SelectList from './SelectList';
 import ConcertSearchResults from './ConcertSearchResults';
 import IndividualConcert from './IndividualConcert';
 import styles from './styles/HomeContainer.module.scss'
-import right from '../images/right-arrow.svg'
-import left from '../images/left-arrow.svg'
+import right from '../images/arrow_right.svg'
+import left from '../images/arrow_left.svg'
 import axios from 'axios'
 
 class HomeContainer extends Component {
