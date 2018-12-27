@@ -2,15 +2,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 // import PlayList from './PlayList'
+import checkMark from '../images/check-solid.svg'
+import styles from './styles/TrackList.module.scss'
 
 class TrackList extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            playList: null,
-        }
-    }  
-
+    
     render() {
 
         let trackListLength = Object.keys(this.props.trackList).length,
@@ -41,7 +37,14 @@ class TrackList extends Component {
 
                       <span
                         onClick={() => this.props.addToPlayList(i)}
-                      > +</span>
+                      > 
+                      {
+                          !this.props.checkPlayList(playUrl)
+                            ? '+'
+                            : <img className={styles.checkMark} src={checkMark}></img>
+        }
+        
+                      </span>
 
                    </div>
         })
@@ -59,8 +62,10 @@ export default TrackList;
 
 TrackList.propTypes = {
     trackList: PropTypes.array.isRequired,
+    playList: PropTypes.array,
     setSong: PropTypes.func.isRequired,
     addToPlayList: PropTypes.func.isRequired,
     checkType: PropTypes.bool,
-    selectedSong: PropTypes.string
+    selectedSong: PropTypes.string,
+    checkPlayList: PropTypes.func
 }
