@@ -1,20 +1,45 @@
 .leftArrow,
 .rightArrow {
-  width: 15px;
+  // width: 15px;
+  font-size: 15px;
+  float: right;
+  line-height: 26px;
+
+  margin-top: 24px;
 }
 
 .leftArrow {
   float: right;
+
+  // &:after {
+  //   content: url(../../images/arrow_up.svg);
+  //   position: absolute;
+  //   // top: -2px;
+  // }
 }
 
 .rightArrow {
-  float: right;
+
+  // &:after {
+  //   content: url(../../images/arrow_down.svg);
+  //   position: absolute;
+  //   // top: -2px;
+  // }
 }
+
 .meta {
   p {
-      margin: 0;
-      text-align: left;
-      font-size: 15px;
-      margin-top: 5px;
+    margin: 0;
+    text-align: left;
+    font-size: 15px;
+    margin-top: 5px;
   }
+}
+.loader {
+    top: 50%;
+    width: 127px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
 }

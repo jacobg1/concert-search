@@ -1,13 +1,14 @@
 .checkMark {
     // display: inline;
     width: 13px;
+        padding-right: 2px;
     // padding-right: 7px;
     // vertical-align: text-top;
 }
 .plus {
-    width: 13px;
+    width: 20px;
     // display: inline-block;
-    // vertical-align: text-top;
+    vertical-align: text-bottom;
     // padding-right: 7px;
 }
 .trackList {
@@ -23,10 +24,10 @@
         font-size: 16px;
         max-width: 195px;
         display: inline-block;
-        word-break: break-all;
-        line-height: 22px;
+        // word-break: break-all;
+        // line-height: 22px;
     }
-    div {
+    .trackHolder {
         background-color: #eee;
         border: 1px solid black;
         // line-height: 35px;
