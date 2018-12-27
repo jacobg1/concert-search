@@ -16,6 +16,7 @@ class Footer extends Component {
                   >
                     Learn React
                   </a> */}
+                  {/* <h3>test</h3> */}
                 </footer>
             </>
         );

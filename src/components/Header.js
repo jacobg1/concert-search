@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Helmet } from "react-helmet";
+// eslint-disable-next-line no-unused-vars
+import styles from './styles/Header.module.scss'
 
 class Header extends Component {
     render () {
@@ -11,17 +13,7 @@ class Header extends Component {
               </Helmet>
 
               <header>
-                  {/* <p>
-                      Edit <code>src/App.js</code> and save to reload.
-                  </p>
-                  <a
-                      className="App-link"
-                      href="https://reactjs.org"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                  >
-                      Learn React
-                  </a> */}
+                  <h1>CRUNCH2.0</h1>
               </header>
             </>
         );
