@@ -2,13 +2,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
-import spinner from '../images/spinner.gif'
+import spinner from '../images/ripple.svg'
 import Player from './Player'
 import TrackList from './TrackList'
 import PlayList from './PlayList'
 import unique from '../util/uniqueArray'
-import right from '../images/right-arrow.svg'
-import left from '../images/left-arrow.svg'
 import styles from './styles/IndividualConcert.module.scss'
 
 class IndividualConcert extends Component {
@@ -75,6 +73,8 @@ class IndividualConcert extends Component {
             let parsePlayList = JSON.parse(storedPlayList)
             this.setState({
                 playList: [...parsePlayList]
+            }, () => {
+                console.log(this.state.playList.length)
             })
         }
     }
@@ -311,7 +311,7 @@ class IndividualConcert extends Component {
 
         let { coverage } = this.state.metaData,
             { venue } = this.state.metaData,
-            { runtime } = this.state.metaData,
+            // { runtime } = this.state.metaData,
             { date } = this.state.metaData
             // { lineage } = this.state.metaData,
             // { notes } = this.state.metaData,
@@ -321,31 +321,30 @@ class IndividualConcert extends Component {
             <>  
                 {
                     this.state && this.state.loading &&
-                        <img src={ spinner } alt="" />
+                        <img className={ styles.loader } src={ spinner } alt="loading..." />
                 }
 
                 {
                     this.state && this.state.metaData && !this.state.loading &&
-                        <div className="meta">
+                        <div className={ styles.meta }>
                             <p>{ coverage ? coverage : '' } { venue ? ` - ${venue}` : '' }</p>
-                            <p>{ runtime ? runtime : '' }</p>
-                            <p>{ date ? date : '' }</p>
+                            {/* { runtime ? <p>Runtime: { runtime }</p> : '' } */}
+                            { date ? <p>{ date }</p> : '' }
                         </div>
                 }   
 
                 {
                     this.state && !this.state.loading && this.checkPlayListLength() &&
-                    <span
-
+                    <p
+                        className={this.state.playListScreen ? styles.leftArrow : styles.rightArrow}
                         onClick={() => this.playListSwitch()}
                     >
                         {
-                            this.state.playListScreen 
-                                ? <img className={styles.leftArrow} src={left} alt="left-arrow"></img>
-                                : <img className={styles.rightArrow} src={right} alt="right-arrow"></img>
-
+                             this.state.playListScreen 
+                                ? 'tracks'
+                                : 'playlist'   
                         }
-                    </span>
+                    </p>
                 }
                 
                 {
@@ -374,12 +373,12 @@ class IndividualConcert extends Component {
 
                 {
                     this.state && this.state.selectedSong && !this.state.loading &&
-                    <Player
-                        songToPlay={this.state.selectedSong}
-                        playListSongIndex={this.state.playListSongIndex}
-                        nextSong={this.nextSong}
-                        prevSong={this.prevSong}
-                    />
+                        <Player
+                            songToPlay={ this.state.selectedSong }
+                            playListSongIndex={ this.state.playListSongIndex }
+                            nextSong={ this.nextSong}
+                            prevSong={ this.prevSong }
+                        />
                 }               
             </>
         );
