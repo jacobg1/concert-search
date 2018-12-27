@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import artistYearList from '../data/artistYearList'
+import styles from './styles/SelectList.module.scss'
 
 class SelectList extends Component {
     constructor(props) {
@@ -62,19 +63,23 @@ class SelectList extends Component {
         )
         
         return (
-            <>
-                {
-                    this.state && this.state.artist &&
-                        <span>{this.state.artist}</span>
-                }
-                {
-                    this.state && this.state.year && this.state.year !== ' ' &&
-                        <span>, { this.state.year }</span>
-                }
+            <div className={ styles.selectHolder }>
+                <div className={ styles.choices }>
+                    {
+                        this.state && this.state.artist &&
+                            <span>{ this.state.artist }</span>
+                    }
+                    {
+                        this.state && this.state.year && this.state.year !== ' ' &&
+                            <span>, { this.state.year }</span>
+                    }
+                </div>
 
-                <form onSubmit={
-                    (e) => this.props.makeSearch(e, this.state.artist, this.state.year)
-                }>
+                <form 
+                    id={ styles.dropDown } 
+                    onSubmit={
+                        (e) => this.props.makeSearch(e, this.state.artist, this.state.year)
+                    }>
 
                     <select onChange={(e) => this.getYears(e)}>
                         { artistChoices }
@@ -84,10 +89,10 @@ class SelectList extends Component {
                         { yearList }
                     </select>
 
-                    <button type="submit">go</button>
+                    <button type="submit">Search</button>
 
                 </form>
-            </>
+            </div>
         );
     }
 }
