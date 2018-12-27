@@ -6,6 +6,7 @@ import spinner from '../images/ripple.svg'
 import Player from './Player'
 import TrackList from './TrackList'
 import PlayList from './PlayList'
+
 import unique from '../util/uniqueArray'
 import styles from './styles/IndividualConcert.module.scss'
 
@@ -323,7 +324,7 @@ class IndividualConcert extends Component {
                     this.state && this.state.loading &&
                         <img className={ styles.loader } src={ spinner } alt="loading..." />
                 }
-
+                
                 {
                     this.state && this.state.metaData && !this.state.loading &&
                         <div className={ styles.meta }>
