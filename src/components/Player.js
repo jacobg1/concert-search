@@ -41,12 +41,17 @@ class Player extends Component {
         // starts animation process by calling the next() function
         this.animationId = requestAnimationFrame(this.next);
     }
+    componentDidUpdate (prevProps) {
+        if(prevProps.songToPlay !== this.props.songToPlay) {
+            this.startAnimation()
+        }
+    }
 
     // starts loop that streams frequency data to state audioData array
     next() {
         this.analyser.getByteTimeDomainData(this.dataArray);
         this.setState({ audioData: this.dataArray }, () => {
-            console.log(this.state.audioData)
+            // console.log(this.state.audioData)
         });
         this.animationId = requestAnimationFrame(this.next);
         
@@ -70,11 +75,10 @@ class Player extends Component {
         return (
             <div className={ styles.player }>
                 <span onClick={() => this.stopAnimation()}>x</span>
-                <textarea value={this.state.audioData} />
                 <span onClick={() => this.startAnimation()}>+</span>
                 {
-                    this.state &&
-                        <Visualizer />
+                    this.state && this.state.audioData &&
+                        <Visualizer audioData={ this.state.audioData } />
                 }
 
                 <button onClick={() => this.props.prevSong(playListSongIndex)}>prev</button>
