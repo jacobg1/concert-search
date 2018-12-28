@@ -16,8 +16,8 @@ class Visualizer extends Component {
         this.createVisualizer = this.createVisualizer.bind(this)
     }
     componentDidMount () {
-        this.createVisualizer()
-        console.log(this.props.audioData)
+        // this.createVisualizer()
+        // console.log(this.props.audioData)
     }
     componentDidUpdate() {
         this.createVisualizer()
@@ -33,7 +33,7 @@ class Visualizer extends Component {
         const dataMax = max(audioData)
         const yScale = scaleLinear()
             .domain([0, dataMax])
-            .range([0, 800])
+            .range([0, 300])
            
         // console.log(transition)
         // const randomColor = scaleLinear()
@@ -58,13 +58,14 @@ class Visualizer extends Component {
             .selectAll('rect')
             .data(audioData)
             .transition()
+            .delay(300)
                 .attr("fill", function (d) {
                     return "hsl(" + Math.random() * (d * 2) + "," + '100%' + "," + '50%' + ")"
                 })
             .attr('x', (d, i) => i * 10)
             
-                .attr('y', d => 800 - yScale(d))
-            .attr('height', d => yScale(d))
+                .attr('y', d => 300 - yScale(d))
+            .attr('height', d => yScale(d) * 2)
             .attr('width', 7)
 
         // select(canvas)
