@@ -2,6 +2,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { select } from 'd3-selection'
+import { scaleLinear } from 'd3-scale'
+import { max } from 'd3-array'
+// eslint-disable-next-line no-unused-vars
+import { transition } from 'd3-transition'
+// import { interpolateLab } from 'd3-interpolate'
+
 import styles from './styles/Visualizer.module.scss'
 
 class Visualizer extends Component {
@@ -21,10 +27,19 @@ class Visualizer extends Component {
         let { audioData } = this.props
         let canvas = document.getElementById('canvas')
         
-        var svgHeight = canvas.clientHeight;
-        var svgWidth = canvas.clientWidth;
-        var barPadding = '1';
-        console.log(svgWidth, svgHeight)
+        // var svgHeight = canvas.clientHeight;
+        // var svgWidth = canvas.clientWidth;
+        // var barPadding = '1';
+        const dataMax = max(audioData)
+        const yScale = scaleLinear()
+            .domain([0, dataMax])
+            .range([0, 800])
+           
+        // console.log(transition)
+        // const randomColor = scaleLinear()
+        //     .category20()
+
+        // console.log(randomColor(13))
 
         select(canvas)
             .selectAll('rect')
@@ -38,20 +53,34 @@ class Visualizer extends Component {
             .exit()
             .remove()
 
+
         select(canvas)
             .selectAll('rect')
             .data(audioData)
-            .attr('x', (d, i) => i * (svgWidth / 1024))
-            .attr('y', function (d) {
-                return  d;
-            })
-            .attr('height', function (d) {
-                return d
-            })
-            .attr('fill', function (d) {
-                return 'rgb(0, 0, ' + d + ')';
-            })
-            .attr('width', .2)    
+            .transition()
+                .attr("fill", function (d) {
+                    return "hsl(" + Math.random() * (d * 2) + "," + '100%' + "," + '50%' + ")"
+                })
+            .attr('x', (d, i) => i * 10)
+            
+                .attr('y', d => 800 - yScale(d))
+            .attr('height', d => yScale(d))
+            .attr('width', 7)
+
+        // select(canvas)
+        //     .selectAll('rect')
+        //     .data(audioData)
+        //     .attr('x', (d, i) => i * (svgWidth / audioData.length))
+        //     .attr('y', function (d) {
+        //         return  d;
+        //     })
+        //     .attr('height', function (d) {
+        //         return d
+        //     })
+        //     .attr('fill', function (d) {
+        //         return 'rgb(0, 0, ' + d + ')';
+        //     })
+        //     .attr('width', (svgWidth / audioData.length) - .2)    
        
            
        
