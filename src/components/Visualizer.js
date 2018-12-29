@@ -60,7 +60,7 @@ class Visualizer extends Component {
             .transition()
             .delay(300)
                 .attr("fill", function (d) {
-                    return "hsl(" + Math.random() * (d * 2) + "," + '100%' + "," + '50%' + ")"
+                    return "hsl(" + Math.random() * (d * 2) + ",100%,50%)"
                 })
             .attr('x', (d, i) => i * 10)
             
