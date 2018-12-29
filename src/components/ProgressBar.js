@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 class ProgressBar extends Component {
     constructor() {
@@ -9,6 +9,7 @@ class ProgressBar extends Component {
             totalTime: null
         }
         // this.setProgress = this.setProgress.bind(this)
+        // this.findPosition = this.findPosition.bind(this)
     }
     componentDidMount () {
         
@@ -74,6 +75,26 @@ class ProgressBar extends Component {
         return currentTime
     }
 
+    // click event to change song position when
+    // progress bar is clicked
+    findPosition (e) {
+        
+        // select progress bar and audio element
+        let progressBar = document.getElementById('progressBar'),
+            player = document.getElementById('musicPlayer')
+
+        // calculate position of click on progress bar
+        let offsetX = e.pageX - progressBar.offsetLeft,
+            percentPosition = offsetX / progressBar.offsetWidth
+
+        // set new position based on click
+        player.currentTime = percentPosition * player.duration
+        // console.log(percentPosition)
+
+        // start the song back up
+        this.props.playSong()
+    }
+
     render() {
         return (
             <>  
@@ -83,7 +104,13 @@ class ProgressBar extends Component {
                         : ''
                 }
 
-                <progress id='progressBar' max={1} value={this.progress}></progress>
+                <progress 
+                    id='progressBar' 
+                    max={1} 
+                    value={this.progress}
+                    onClick={(e) => this.findPosition(e)}
+                >    
+                </progress>
 
                 {
                     this.currentTime
@@ -97,6 +124,6 @@ class ProgressBar extends Component {
 
 export default ProgressBar
 
-// ProgressBar.propTypes = {
-//     player: PropTypes.element
-// }
+ProgressBar.propTypes = {
+    playSong: PropTypes.func
+}
