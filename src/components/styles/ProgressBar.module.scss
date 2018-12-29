@@ -1,0 +1,58 @@
+.progressBarHolder {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+
+  .currentTime {
+    display: block;
+    font-size: 13px;
+    float: left;
+    padding: 6px 0 0 4%;
+
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
+
+  .totalTime {
+    display: block;
+    float: right;
+    font-size: 13px;
+    padding: 6px 4% 0 0;
+
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
+}
+
+progress[value] {
+
+  appearance: none;
+
+  border: none;
+
+  width: 90%;
+  height: 15px;
+
+  color: blue;
+}
+
+progress[value]::-webkit-progress-bar {
+  background-color: #eee;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+
+}
+
+progress[value]::-webkit-progress-value {
+  background-color: red;
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, .25), rgba(0, 0, 0, .25)), -webkit-linear-gradient(left, #73d3da, rgba(15, 80, 130, 0.632));
+
+  border-radius: 2px;
+  //   background-size: 35px 20px, 100% 100%, 100% 100%;
+}
