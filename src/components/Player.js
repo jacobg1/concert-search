@@ -2,20 +2,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import styles from './styles/Player.module.scss'
-import Visualizer from './Visualizer'
+// import Visualizer from './Visualizer'
+import ProgressBar from './ProgressBar'
 
 class Player extends Component {
     constructor(props) {
         super(props)
         // initiate state with an empty uint 8 array
         // and bind this to the next function
-        // eslint-disable-next-line no-undef
-        this.state = { audioData: new Uint8Array(0) }
+        this.state = { 
+            // eslint-disable-next-line no-undef
+            audioData: new Uint8Array(0)
+        }
         this.next = this.next.bind(this);
 
     }
     componentDidMount () {
-
+        
         // create new audio content to interact with the browsers audio api
         this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
@@ -36,14 +39,14 @@ class Player extends Component {
 
         // connect audio source to analyser        
         this.audioSource.connect(this.analyser);
-        this.audioSource.connect(this.audioContext.destination);
+        this.audioSource.connect(this.audioContext.destination)
 
-        // starts animation process by calling the next() function
-        this.animationId = requestAnimationFrame(this.next);
+        // play song and start visualizer animation
+        this.playSong()
     }
     componentDidUpdate (prevProps) {
         if(prevProps.songToPlay !== this.props.songToPlay) {
-            this.startAnimation()
+            this.playSong()
         }
     }
 
@@ -61,37 +64,42 @@ class Player extends Component {
         this.analyser.disconnect();
         this.audioSource.disconnect();
     }
-    stopAnimation () {
-        cancelAnimationFrame(this.animationId);
+    pauseSong () {
+        cancelAnimationFrame(this.animationId)
+        // let player = document.getElementById('musicPlayer')
+        this.audioElement.pause()
        
     }
-    startAnimation () {
-       
+    playSong () {
+        // let player = document.getElementById('musicPlayer')
+        this.audioElement.play()
         this.animationId = requestAnimationFrame(this.next);
+    }
+    createProgressBar () {
+        
     }
     render() {
         let { playListSongIndex } = this.props,
             { songToPlay } = this.props
         return (
             <div className={ styles.player }>
-                <span onClick={() => this.stopAnimation()}>x</span>
-                <span onClick={() => this.startAnimation()}>+</span>
-                {
+                
+                {/* {
                     this.state && this.state.audioData &&
                         <Visualizer audioData={ this.state.audioData } />
-                }
-
+                } */}
+                <button onClick={() => this.pauseSong()}>pause</button>
+                <button onClick={() => this.playSong()}>play</button>
                 <button onClick={() => this.props.prevSong(playListSongIndex)}>prev</button>
                 <button onClick={() => this.props.nextSong(playListSongIndex)}>next</button>
                 <audio 
                     id='musicPlayer'
                     type='audio/mp3'
-                    controls 
-                    controlsList='nodownload'
-                    autoPlay 
+                   
                     src={ songToPlay } 
                     onEnded={() => this.props.nextSong(playListSongIndex)}
                 />
+                <ProgressBar player={this.state.player} />
             </div>
         );
     }
