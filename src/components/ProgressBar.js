@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
+import styles from './styles/ProgressBar.module.scss'
 
 class ProgressBar extends Component {
     constructor() {
@@ -97,13 +98,8 @@ class ProgressBar extends Component {
 
     render() {
         return (
-            <>  
-                {
-                    this.totalTime
-                        ? <span>{this.totalTime}</span>
-                        : ''
-                }
-
+            <div className={ styles.progressBarHolder }>  
+               
                 <progress 
                     id='progressBar' 
                     max={1} 
@@ -112,12 +108,20 @@ class ProgressBar extends Component {
                 >    
                 </progress>
 
-                {
-                    this.currentTime
-                        ? <span>{this.currentTime}</span>
-                        : ''
-                }
-            </>
+                <div>
+                    {
+                        this.currentTime
+                            ? <span className={styles.currentTime}>{this.currentTime}</span>
+                            : ''
+                    }
+                    {
+                        this.totalTime
+                            ? <span className={styles.totalTime}>{this.totalTime}</span>
+                            : ''
+                    }
+                </div>
+
+            </div>
         );
     }
 }
