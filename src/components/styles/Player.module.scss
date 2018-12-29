@@ -1,16 +1,79 @@
 .player {
-    // position: fixed;
-    bottom: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
-    audio {
-      width: 100%;
-      height: 100%;
-      max-height: 40px;
-      
-    }
-    textarea {
-        height: 200px;
-    }
+  // position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 90px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #eeeeee;
+  position: relative;
+  border: 1px solid black;
+  audio {
+    width: 100%;
+    height: 100%;
+    max-height: 40px;
+
+  }
+
+  textarea {
+    height: 200px;
+  }
+}
+
+.pause,
+.play {
+
+  cursor: pointer;
+  float: left;
+  // margin-left: 2%;
+  margin-top: 11px;
+  margin-left: 5%;
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.play {
+  height: 20px;
+  width: auto;
+}
+
+.pause {
+  height: 20px;
+  width: auto;
+
+}
+
+.fastForward,
+.fastRewind {
+  height: 20px;
+  width: auto;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.fastForward {
+  // background-image: url("../../images/fast-forward.svg");
+  margin-left: 20px;
+}
+
+.fastRewind {
+  // background-image: url("../../images/fast-rewind.svg");
+}
+
+.forwardBackHolder {
+  // float: right;
+  position: absolute;
+  right: 5%;
+  top: 11px;
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }
