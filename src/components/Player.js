@@ -15,7 +15,7 @@ class Player extends Component {
             audioData: new Uint8Array(0)
         }
         this.next = this.next.bind(this);
-
+        this.playSong = this.playSong.bind(this)
     }
     componentDidMount () {
         
@@ -99,7 +99,7 @@ class Player extends Component {
                     src={ songToPlay } 
                     onEnded={() => this.props.nextSong(playListSongIndex)}
                 />
-                <ProgressBar player={this.state.player} />
+                <ProgressBar playSong={this.playSong} />
             </div>
         );
     }
