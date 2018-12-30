@@ -26,7 +26,7 @@
 .play {
 
   cursor: pointer;
-  float: left;
+  // float: left;
   // margin-left: 2%;
   margin-top: 11px;
   margin-left: 3%;
@@ -68,8 +68,8 @@
 
 .forwardBackHolder {
   // float: right;
-  float: right;
-  margin-right: 3%;
+  // float: right;
+  // margin-right: 3%;
   margin-top: 11px;
 
   &:after {
@@ -92,7 +92,7 @@
 }
 
 .visToggle {
-  margin: 7px auto 0;
+  margin: 7px 20% 0 33%;
   height: 23px;
   width: 23px;
   display: inline-block;
@@ -104,4 +104,13 @@
     height: 27px;
     width: 19px;
   }
+}
+
+.customControls {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
 }
