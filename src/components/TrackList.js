@@ -54,8 +54,13 @@ class TrackList extends Component {
         
         return (
             <div className={ styles.trackList }>
+
                 <h3>{ trackListLength } tracks</h3>
+
+                <div className={ styles.maxHeightHolder }>
                     { showTrackList }
+                </div>
+                    
             </div>
         );
     }

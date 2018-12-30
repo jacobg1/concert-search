@@ -40,8 +40,13 @@ class PlayList extends Component {
         })
         return (
             <div className={ styles.playList }>
+            
               <h3>{ playListLength } songs</h3>
-              { showPlayList }
+
+              <div className={ styles.maxHeightHolder }>
+                    {showPlayList}
+              </div>
+              
             </div>
         );
     }
