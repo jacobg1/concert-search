@@ -45,7 +45,7 @@ class Visualizer extends Component {
         //     .category20()
 
         // console.log(randomColor(13))
-        console.log(this.props.isVisClose)
+        // console.log(this.props.isVisClose)
         if(!isVisClose) {
             select(canvas)
                 .selectAll('rect')
