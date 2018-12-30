@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import styles from './styles/Player.module.scss'
-// import Visualizer from './Visualizer'
+import Visualizer from './Visualizer'
 import ProgressBar from './ProgressBar'
 import play from '../images/play-play.svg'
 import pause from '../images/pause-solid.svg'
@@ -105,48 +105,53 @@ class Player extends Component {
             { songToPlay } = this.props
 
         return (
-            <div className={ styles.player }>
-                {/* {
-                    this.state && this.state.audioData &&
-                        <Visualizer audioData={ this.state.audioData } />
-                } */}
-                <div 
-                    onClick={() => this.playToggle()}
-                >   
-                {
-                    !this.state.isPlaying
-                        ? <img alt='play' className={ styles.play } src={ play }></img>
-                        : <img alt='pause' className={ styles.pause } src={ pause }></img>
-                }
-                </div>
-
-                <div className={ styles.forwardBackHolder }>
-                    <img
-                        src={ back }
-                        alt='back'
-                        className={ styles.fastRewind }
-                        onClick={() => this.props.prevSong(playListSongIndex)}
-                    >
-                    </img>
+            <>
+              <div className={ styles.visHolder }>
+                    {
+                        this.state && this.state.audioData &&
+                        <Visualizer audioData={this.state.audioData} />
+                    }
+                <div className={ styles.player }>
                     
-                    <img 
-                        src={ forward }
-                        alt='forward'
-                        className={ styles.fastForward }
-                        onClick={() => this.props.nextSong(playListSongIndex)}
-                    >
-                    </img>
-                </div>
+                    <div 
+                        onClick={() => this.playToggle()}
+                    >   
+                    {
+                        !this.state.isPlaying
+                            ? <img alt='play' className={ styles.play } src={ play }></img>
+                            : <img alt='pause' className={ styles.pause } src={ pause }></img>
+                    }
+                    </div>
 
-                <audio 
-                    id='musicPlayer'
-                    type='audio/mp3'
-                   
-                    src={ songToPlay } 
-                    onEnded={() => this.props.nextSong(playListSongIndex)}
-                />
-                <ProgressBar playSong={ this.playSong } />
+                    <div className={ styles.forwardBackHolder }>
+                        <img
+                            src={ back }
+                            alt='back'
+                            className={ styles.fastRewind }
+                            onClick={() => this.props.prevSong(playListSongIndex)}
+                        >
+                        </img>
+                        
+                        <img 
+                            src={ forward }
+                            alt='forward'
+                            className={ styles.fastForward }
+                            onClick={() => this.props.nextSong(playListSongIndex)}
+                        >
+                        </img>
+                    </div>
+
+                    <audio 
+                        id='musicPlayer'
+                        type='audio/mp3'
+                    
+                        src={ songToPlay } 
+                        onEnded={() => this.props.nextSong(playListSongIndex)}
+                    />
+                    <ProgressBar playSong={ this.playSong } />
+                </div>
             </div>
+          </>  
         );
     }
 }
