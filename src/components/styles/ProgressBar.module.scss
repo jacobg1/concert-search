@@ -1,8 +1,8 @@
 .progressBarHolder {
-  position: absolute;
-  bottom: 10px;
-  width: 100%;
-
+  //   position: absolute;
+  //   bottom: 10px;
+  //   width: 100%;
+    margin-top: 50px;
   .currentTime {
     display: block;
     font-size: 13px;
@@ -36,9 +36,11 @@ progress[value] {
 
   border: none;
 
-  width: 90%;
+  //   width: 90%;
   height: 15px;
-
+  width: 94%;
+  display: block;
+  margin: auto;
   color: blue;
 }
 
