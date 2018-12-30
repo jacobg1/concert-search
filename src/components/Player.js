@@ -8,6 +8,8 @@ import play from '../images/play-play.svg'
 import pause from '../images/pause-solid.svg'
 import forward from '../images/forward-solid.svg'
 import back from '../images/backward-solid.svg'
+import audioWave from '../images/audio-wave.svg'
+import close from '../images/times-solid.svg'
 
 class Player extends Component {
     constructor(props) {
@@ -17,7 +19,8 @@ class Player extends Component {
         this.state = { 
             // eslint-disable-next-line no-undef
             audioData: new Uint8Array(0),
-            isPlaying: true
+            isPlaying: true,
+            isVisClose: false
         }
         this.next = this.next.bind(this)
         this.playSong = this.playSong.bind(this)
@@ -61,7 +64,11 @@ class Player extends Component {
         this.setState({ audioData: this.dataArray }, () => {
             // console.log(this.state.audioData)
         });
-        this.animationId = requestAnimationFrame(this.next)
+        if (this.state.isPlaying) {
+            this.animationId = requestAnimationFrame(this.next)
+        } else {
+            return
+        }
         
     }
     componentWillUnmount() {
@@ -79,6 +86,10 @@ class Player extends Component {
         })
 
        
+    }
+    closeVisualizer () {
+        this.setState({isVisClose: !this.state.isVisClose})
+        console.log('test')
     }
     playSong () {
         // let player = document.getElementById('musicPlayer')
@@ -106,23 +117,37 @@ class Player extends Component {
 
         return (
             <>
-              <div className={ styles.visHolder }>
+                <div className={ styles.visHolder }>
+
                     {
                         this.state && this.state.audioData &&
-                        <Visualizer audioData={this.state.audioData} />
+                            <Visualizer 
+                                audioData={this.state.audioData} 
+                                isVisClose={this.state.isVisClose}
+                            />
                     }
+
+                </div>   
+
                 <div className={ styles.player }>
-                    
                     <div 
                         onClick={() => this.playToggle()}
                     >   
-                    {
-                        !this.state.isPlaying
-                            ? <img alt='play' className={ styles.play } src={ play }></img>
-                            : <img alt='pause' className={ styles.pause } src={ pause }></img>
-                    }
+                        {
+                            !this.state.isPlaying
+                                ? <img alt='play' className={ styles.play } src={ play }></img>
+                                : <img alt='pause' className={ styles.pause } src={ pause }></img>
+                        }
                     </div>
-
+                    
+                    <div
+                        className={ 
+                            `${styles.visToggle}
+                                ${!this.state.isVisClose ? styles.visClose : ''}`
+                        }
+                        onClick={() => this.closeVisualizer()}
+                    ></div>
+                    
                     <div className={ styles.forwardBackHolder }>
                         <img
                             src={ back }
@@ -148,9 +173,10 @@ class Player extends Component {
                         src={ songToPlay } 
                         onEnded={() => this.props.nextSong(playListSongIndex)}
                     />
+
                     <ProgressBar playSong={ this.playSong } />
                 </div>
-            </div>
+            
           </>  
         );
     }

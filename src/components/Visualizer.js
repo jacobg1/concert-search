@@ -18,13 +18,18 @@ class Visualizer extends Component {
     componentDidMount () {
         // this.createVisualizer()
         // console.log(this.props.audioData)
+       
+        
     }
     componentDidUpdate() {
         this.createVisualizer()
     }
+    
     createVisualizer () {
      
-        let { audioData } = this.props
+        let { audioData } = this.props,
+            { isVisClose } = this.props
+
         let canvas = document.getElementById('canvas')
         
         // var svgHeight = canvas.clientHeight;
@@ -40,33 +45,36 @@ class Visualizer extends Component {
         //     .category20()
 
         // console.log(randomColor(13))
+        console.log(this.props.isVisClose)
+        if(!isVisClose) {
+            select(canvas)
+                .selectAll('rect')
+                .data(audioData)
+                .enter()
+                .append('rect')
 
-        select(canvas)
-            .selectAll('rect')
-            .data(audioData)
-            .enter()
-            .append('rect')
-
-        select(canvas)
-            .selectAll('rect')
-            .data(audioData)
-            .exit()
-            .remove()
+            select(canvas)
+                .selectAll('rect')
+                .data(audioData)
+                .exit()
+                .remove()
 
 
-        select(canvas)
-            .selectAll('rect')
-            .data(audioData)
-            .transition()
-            .delay(300)
+            select(canvas)
+                .selectAll('rect')
+                .data(audioData)
+                .transition()
+                .delay(300)
                 .attr("fill", function (d) {
                     return "hsl(" + Math.random() * (d * 2) + ",100%,50%)"
                 })
-            .attr('x', (d, i) => i * 10)
-            
+                .attr('x', (d, i) => i * 10)
+
                 .attr('y', d => 300 - yScale(d))
-            .attr('height', d => yScale(d) * 2)
-            .attr('width', 7)
+                .attr('height', d => yScale(d) * 2)
+                .attr('width', 7)
+        }
+        
 
         // select(canvas)
         //     .selectAll('rect')
@@ -98,9 +106,13 @@ class Visualizer extends Component {
        
     }
     render() {
+       
         return (
             <>
-               <div className={styles.svgHolder}>
+               <div className={
+                   `${styles.svgHolder}
+                        ${this.props.isVisClose ? styles.hide : ''}`
+                }>
                     <svg id='canvas'></svg>
                </div>
             </>
@@ -111,5 +123,7 @@ class Visualizer extends Component {
 export default Visualizer;
 
 Visualizer.propTypes = {
-    audioData: PropTypes.object
+    audioData: PropTypes.object,
+    closeVisualizer: PropTypes.func,
+    isVisClose: PropTypes.bool
 }
