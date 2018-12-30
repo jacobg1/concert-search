@@ -1,5 +1,8 @@
 .playList {
   text-align: left;
+  width: 80%;
+  margin: 0 auto;
+  padding-bottom: 35px;
 
   h3 {
     font-size: 23px;
@@ -22,12 +25,20 @@
   }
 
   .remove {
-   
-      position: absolute;
-      top: 50%;
-      right: 8px;
-      transform: translateY(-50%);
-      width: 18px;
-    
+
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    width: 18px;
+
   }
+}
+
+.maxHeightHolder {
+  max-height: 40vh;
+  overflow-y: auto;
+  min-height: calc(63vh - 109px);
+  // border-top: 1px solid black;
+  /* border-bottom: 1px solid black; */
 }
