@@ -83,7 +83,7 @@ class IndividualConcert extends Component {
     // when component mounts make concert search
     // and set playlist if it exists
     componentDidMount () {
-        this.makeConcertSearch(this.props.concertToPlay)
+        // this.makeConcertSearch(this.props.concertToPlay)
         this.setPlayList()
     }
     
@@ -371,16 +371,21 @@ class IndividualConcert extends Component {
                             checkType={ this.state.isPlayListSong }
                         />
                 }   
-
-                {
-                    this.state && this.state.selectedSong &&
-                        <Player
-                            songToPlay={ this.state.selectedSong }
-                            playListSongIndex={ this.state.playListSongIndex }
-                            nextSong={ this.nextSong}
-                            prevSong={ this.prevSong }
-                        />
-                }               
+                <div className={ 
+                    this.state.loading
+                        ? styles.hide
+                        : '' 
+                }>
+                    {
+                        this.state && this.state.selectedSong &&
+                            <Player
+                                songToPlay={ this.state.selectedSong }
+                                playListSongIndex={ this.state.playListSongIndex }
+                                nextSong={ this.nextSong}
+                                prevSong={ this.prevSong }
+                            />
+                    }    
+                </div>           
             </>
         );
     }
