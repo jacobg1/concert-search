@@ -78,3 +78,30 @@
     clear: both;
   }
 }
+
+.audioWave {
+  height: auto;
+  width: 25px;
+  margin-top: 7px;
+}
+
+.closeVis {
+  height: auto;
+  width: 16px;
+  margin-top: 6px;
+}
+
+.visToggle {
+  margin: 7px auto 0;
+  height: 23px;
+  width: 23px;
+  display: inline-block;
+  background-image: url("../../images/audio-wave.svg");
+  background-size: cover;
+
+  &.visClose {
+    background-image: url("../../images/times-solid.svg");
+    height: 27px;
+    width: 19px;
+  }
+}
