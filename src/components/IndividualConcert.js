@@ -373,7 +373,7 @@ class IndividualConcert extends Component {
                 }   
 
                 {
-                    this.state && this.state.selectedSong && !this.state.loading &&
+                    this.state && this.state.selectedSong &&
                         <Player
                             songToPlay={ this.state.selectedSong }
                             playListSongIndex={ this.state.playListSongIndex }
