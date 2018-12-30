@@ -8,8 +8,7 @@ import play from '../images/play-play.svg'
 import pause from '../images/pause-solid.svg'
 import forward from '../images/forward-solid.svg'
 import back from '../images/backward-solid.svg'
-import audioWave from '../images/audio-wave.svg'
-import close from '../images/times-solid.svg'
+
 
 class Player extends Component {
     constructor(props) {
@@ -130,42 +129,44 @@ class Player extends Component {
                 </div>   
 
                 <div className={ styles.player }>
-                    <div 
-                        onClick={() => this.playToggle()}
-                    >   
-                        {
-                            !this.state.isPlaying
-                                ? <img alt='play' className={ styles.play } src={ play }></img>
-                                : <img alt='pause' className={ styles.pause } src={ pause }></img>
-                        }
-                    </div>
-                    
-                    <div
-                        className={ 
-                            `${styles.visToggle}
-                                ${!this.state.isVisClose ? styles.visClose : ''}`
-                        }
-                        onClick={() => this.closeVisualizer()}
-                    ></div>
-                    
-                    <div className={ styles.forwardBackHolder }>
-                        <img
-                            src={ back }
-                            alt='back'
-                            className={ styles.fastRewind }
-                            onClick={() => this.props.prevSong(playListSongIndex)}
-                        >
-                        </img>
-                        
-                        <img 
-                            src={ forward }
-                            alt='forward'
-                            className={ styles.fastForward }
-                            onClick={() => this.props.nextSong(playListSongIndex)}
-                        >
-                        </img>
-                    </div>
+                    <div className={ styles.customControls }>
+                        <div 
+                            onClick={() => this.playToggle()}
+                        >   
+                            {
+                                !this.state.isPlaying
+                                    ? <img alt='play' className={ styles.play } src={ play }></img>
+                                    : <img alt='pause' className={ styles.pause } src={ pause }></img>
+                            }
+                        </div>
 
+                        <div
+                            className={ 
+                                `${styles.visToggle}
+                                    ${!this.state.isVisClose ? styles.visClose : ''}`
+                            }
+                            onClick={() => this.closeVisualizer()}
+                        ></div>
+                        
+                        <div className={ styles.forwardBackHolder }>
+                            <img
+                                src={ back }
+                                alt='back'
+                                className={ styles.fastRewind }
+                                onClick={() => this.props.prevSong(playListSongIndex)}
+                            >
+                            </img>
+                            
+                            <img 
+                                src={ forward }
+                                alt='forward'
+                                className={ styles.fastForward }
+                                onClick={() => this.props.nextSong(playListSongIndex)}
+                            >
+                            </img>
+                        </div>
+                    </div>
+                    
                     <audio 
                         id='musicPlayer'
                         type='audio/mp3'
