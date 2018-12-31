@@ -64,15 +64,17 @@ class Visualizer extends Component {
                 .selectAll('rect')
                 .data(audioData)
                 .transition()
-                // .delay(100)
-                .attr("fill", function (d) {
-                    return "hsl(" + Math.random() * (d * 2) + ",100%,50%)"
+                .delay(300)
+                .attr("fill", function (d, i) {
+                    let x = (i + 1) % 360
+                    return "hsl(" + x  + ",100%,50%)"
                 })
                 .attr('x', (d, i) => i * 10)
 
                 .attr('y', d => 300 - yScale(d))
                 .attr('height', d => yScale(d) * 2)
                 .attr('width', 7)
+                .remove()
         }
         
 
