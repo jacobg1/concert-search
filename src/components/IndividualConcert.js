@@ -288,13 +288,18 @@ class IndividualConcert extends Component {
     }
     playListSwitch () {
 
-        let { playListScreen } = this.state
 
         this.setState({
-            playListScreen: !playListScreen 
+            playListScreen: true 
         })
     }
+    trackListSwitch() {
 
+
+        this.setState({
+            playListScreen: false
+        })
+    }
     // function to check playlist length
     // returns true if playlist length not zero
     checkPlayListLength () {
@@ -322,13 +327,18 @@ class IndividualConcert extends Component {
             <>  
                 {
                     this.state && this.state.loading &&
-                        <img className={ styles.loader } src={ spinner } alt="loading..." />
+                        <div className={ styles.loadingHolder }>
+                            <img className={ styles.loader } src={ spinner } alt="loading..." />
+                        </div>
                 }
                 
                 {
                     this.state && this.state.metaData && !this.state.loading &&
                         <div className={ styles.meta }>
-                            <p>{ coverage ? coverage : '' } { venue ? ` - ${venue}` : '' }</p>
+                        <p>{this.props.selectedArtist}</p>
+
+                            <p>
+                            { coverage ? coverage : '' } { venue ? ` - ${venue}` : '' }</p>
                             {/* { runtime ? <p>Runtime: { runtime }</p> : '' } */}
                             { date ? <p>{ date }</p> : '' }
                         </div>
@@ -336,16 +346,22 @@ class IndividualConcert extends Component {
 
                 {
                     this.state && !this.state.loading && this.checkPlayListLength() &&
-                    <p
-                        className={this.state.playListScreen ? styles.leftArrow : styles.rightArrow}
-                        onClick={() => this.playListSwitch()}
-                    >
-                        {
-                             this.state.playListScreen 
-                                ? 'tracks'
-                                : 'playlist'   
-                        }
-                    </p>
+                        <div className={ styles.playListSwitch }>
+                            <span
+                                style={{paddingRight: 10}}
+                                className={!this.state.playListScreen ? styles.active : ''}
+                                onClick={() => this.trackListSwitch()}
+                            >
+                                Tracks
+                            </span>
+
+                            <span
+                                className={this.state.playListScreen ? styles.active : ''}
+                                onClick={() => this.playListSwitch()}
+                            >
+                                Playlist
+                            </span>
+                        </div>
                 }
                 
                 {
@@ -396,4 +412,5 @@ export default IndividualConcert
 IndividualConcert.propTypes = {
     concertToPlay: PropTypes.string.isRequired,
     showConcertScreen: PropTypes.func.isRequired,
+    selectedArtist: PropTypes.string
 }

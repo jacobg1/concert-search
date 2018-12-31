@@ -64,7 +64,7 @@ class Visualizer extends Component {
                 .selectAll('rect')
                 .data(audioData)
                 .transition()
-                .delay(300)
+                // .delay(100)
                 .attr("fill", function (d) {
                     return "hsl(" + Math.random() * (d * 2) + ",100%,50%)"
                 })

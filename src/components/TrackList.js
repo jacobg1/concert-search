@@ -25,7 +25,7 @@ class TrackList extends Component {
                       className={styles.trackHolder}    
                       key={i}
                     >
-                    <div onClick={() => this.props.setSong(playUrl, i)}>
+                    <div className={ styles.trackPadding } onClick={() => this.props.setSong(playUrl, i)}>
                         <span 
                             className={( !checkType && playUrl === selectedSong ) ? 'active' : '' }
                         >

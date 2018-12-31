@@ -7,6 +7,7 @@ import styles from './styles/HomeContainer.module.scss'
 import right from '../images/arrow_right.svg'
 import left from '../images/arrow_left.svg'
 import axios from 'axios'
+import recordPlayer from '../images/vynil.svg'
 
 class HomeContainer extends Component {
     constructor () {
@@ -16,7 +17,8 @@ class HomeContainer extends Component {
             switchScreens: false,
             selectedArtist: '',
             selectedYear: '',
-            selectedConcert: ''
+            selectedConcert: '',
+            searchMade: false
         }
         // binding 'this' to passed down functions to keep context
         this.makeSearch = this.makeSearch.bind(this)
@@ -47,7 +49,8 @@ class HomeContainer extends Component {
                     searchResults: response.data,
                     selectedArtist: searchArtist,
                     selectedYear: searchYear,
-                    switchScreens: false
+                    switchScreens: false,
+                    searchMade: true
                 })
         
            }).catch(function(error) {
@@ -92,7 +95,7 @@ class HomeContainer extends Component {
                     <span
                         className={
                             `${styles.showConcertButton}
-                                ${this.state.selectedConcert ? styles.show : ''}`
+                                ${!this.state.selectedConcert ? styles.hide : ''}`
                         }
                         onClick={() => this.switchScreens()}
                     >   
@@ -118,14 +121,19 @@ class HomeContainer extends Component {
 
                 {
                     this.state &&
-                    <SelectList
-                        makeSearch={this.makeSearch}
-                    />
+                        <SelectList
+                            makeSearch={this.makeSearch}
+                        />
                 } 
-
+                {
+                    this.state && !this.state.searchMade &&
+                        <div className={ styles.recordHolder }>
+                            <img className={ styles.record } src={ recordPlayer } alt='record-icon'></img>
+                        </div>
+                }
                 <div className={
                     `${styles.concertResults} 
-                     ${this.state.switchScreens ? styles.hide : styles.show }`
+                     ${this.state.switchScreens ? styles.hide : '' }`
                 }>
                          
 
@@ -144,15 +152,16 @@ class HomeContainer extends Component {
 
                 <div className={
                     `${styles.individualConcert} 
-                     ${this.state.switchScreens ? styles.show : styles.hide}` 
+                     ${!this.state.switchScreens ? styles.hide : ''}` 
                 }>
                     
                     
                         
                     {
-                        this.state && this.state.selectedConcert &&
+                        this.state && 
 
                             <IndividualConcert 
+                                selectedArtist={ this.state.selectedArtist }
                                 showConcertScreen={ this.showConcertScreen }
                                 concertToPlay={ this.state.selectedConcert }
                             />
