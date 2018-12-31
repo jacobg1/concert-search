@@ -1,9 +1,10 @@
 .svgHolder {
-  background: -webkit-linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, .1) 33%, rgba(0,0, 0, .1) 66%, transparent 66%), -webkit-linear-gradient(top, rgba(255, 255, 255, .25), rgba(0, 0, 0, .25)), -webkit-linear-gradient(left, #09c, #f44);
+  background: -webkit-linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, 0.1) 33%, rgba(0, 0, 0, 0.1) 66%, transparent 66%), -webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.25)), -webkit-linear-gradient(left, #9fb6e1, #e1e5fe);
   display: block;
   transition: all .3s linear;
   height: 150px;
   opacity: 1;
+
   svg {
     // max-height: 140px;
     width: 100%;
@@ -15,3 +16,7 @@
     opacity: 0;
   }
 }
+
+// rect {
+//   fill: #94adde;
+// }

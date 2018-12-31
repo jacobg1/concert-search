@@ -23,11 +23,37 @@
   // max-height: 100vh;
   // overflow-x: auto;
   // overflow-y: auto;
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+
+  ::-webkit-scrollbar:vertical {
+    width: 9px;
+  }
+
+  ::-webkit-scrollbar:horizontal {
+    height: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #94adde;
+    // border-radius: 10px;
+    border: 1px solid #ffffff;
+    border-left: none;
+  }
+
+  ::-webkit-scrollbar-track {
+    // border-radius: 10px;
+    background-color: #dde1ff;
+  }
+
   h3 {
     font-size: 23px;
     display: inline-block;
     margin: 0;
     padding-bottom: 17px;
+    font-family: 'Sarabun';
+    font-weight: 600;
   }
 
   span {

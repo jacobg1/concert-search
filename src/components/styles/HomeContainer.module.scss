@@ -8,9 +8,9 @@
   // color: red;
   // width: 91%;
   // margin: 0 auto;
-  max-height: 100vh;
-  overflow-x: auto;
-  overflow-y: auto;
+  // max-height: 100vh;
+  // overflow-x: auto;
+  // overflow-y: auto;
   width: 90%;
   margin: 30px auto 0;
   text-align: left;
@@ -32,6 +32,7 @@
     color: #000000;
     cursor: pointer;
   }
+
 }
 
 .individualConcert {
@@ -55,18 +56,16 @@
   width: 38px;
   position: absolute;
   z-index: 1;
-
-  top: 194px;
-  /* z-index: 1; */
+  top: 203px;
   cursor: pointer;
 }
 
 .leftArrow {
-  left: 0;
+  left: 1%;
 }
 
 .rightArrow {
-  left: 0;
+  left: 1%;
 }
 
 .recordHolder {
@@ -100,3 +99,29 @@
     transform: rotate(360deg);
   }
 }
+
+// .concertResults {
+//   &::-webkit-scrollbar {
+//     -webkit-appearance: none;
+//   }
+
+//   &::-webkit-scrollbar:vertical {
+//     width: 9px;
+//   }
+
+//   &::-webkit-scrollbar:horizontal {
+//     height: 5px;
+//   }
+
+//   &::-webkit-scrollbar-thumb {
+//     background-color: #94adde;
+//     // border-radius: 10px;
+//     border: 1px solid #ffffff;
+//     // border-left: none;
+//   }
+
+//   &::-webkit-scrollbar-track {
+//     border: 1px solid #ffffff;
+//     background-color: #dde1ff;
+//   }
+// }
