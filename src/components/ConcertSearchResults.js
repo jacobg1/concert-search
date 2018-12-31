@@ -48,6 +48,7 @@ class ConcertSearchResults extends Component {
                 { title } = concerts[index][item]
 
             return <div
+                     className={ styles.concert }
                      onClick={() => this.props.showConcertScreen(identifier)} 
                      key={id}
                    >
@@ -124,17 +125,15 @@ class ConcertSearchResults extends Component {
                     (this.state.concertIndex + 1) !== Object.keys(this.props.concerts).length 
 
                         ? <button 
-                            className={ styles.loadMore }
+                            className={ `${styles.loadMore} ${styles.cursor}` }
                             onClick={() => this.increaseConcertIndex()}
                           >
                             Load more
                           </button>
 
                         : Object.keys(this.props.concerts).length === 1
-
                         ? ''
-
-                        : <p>No more results</p> 
+                        : <button className={styles.loadMore}>No more results</button> 
                 }
             </>
         );
