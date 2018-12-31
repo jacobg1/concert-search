@@ -1,18 +1,21 @@
 #dropDown {
   margin-top: 26px;
+  text-align: right;
 
   select {
     appearance: none;
-    border: 1px solid black;
-    background: url("../../images/arrow_down.svg") 98% / 25px no-repeat #eee;
+    border: none;
+    background: url("../../images/arrow_down.svg") 98% / 25px no-repeat #d8dbff;
     display: block;
     margin: 9px auto;
     width: 85%;
     border-radius: 0;
     line-height: 32px;
-    color: #c11717;
+    color: #2c2252;
     font-weight: bold;
     padding-left: 15px;
+    font-family: 'Sarabun';
+    font-weight: 700;
 
   }
 
@@ -27,10 +30,10 @@
   padding-top: 11px;
 
   span {
-
+    font-family: 'Sarabun';
+    font-weight: 800;
     font-size: 14px;
     display: inline-block;
-    font-weight: bold;
     color: #c11717;
     //   margin-bottom: -26px;
   }
@@ -40,17 +43,24 @@
     left: 0;
     right: 0;
     margin: auto;
+
+    span {
+      color: black;
+
+    }
   }
 
   button {
     appearance: none;
-    float: right;
+    // float: right;
     margin-right: 7.5%;
-    border: 1px solid black;
+    border: none;
     line-height: 27px;
-    font-weight: bold;
+    font-family: 'Sarabun';
+    font-weight: 700;
+    padding-bottom: 3px;
     width: 21%;
-    background-color: #eee;
-    color: #c11717;
+    background-color: #d8dbff;
+    color: #2c2252;
   }
 }

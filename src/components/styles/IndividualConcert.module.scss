@@ -6,7 +6,7 @@
   line-height: 26px;
 
   margin-top: 24px;
-  margin-right: 10%;
+  margin-right: 6%;
 }
 
 .leftArrow {
@@ -19,18 +19,20 @@
   // }
 }
 
-.rightArrow {
+// .rightArrow {
 
-  // &:after {
-  //   content: url(../../images/arrow_down.svg);
-  //   position: absolute;
-  //   // top: -2px;
-  // }
-}
+//   // &:after {
+//   //   content: url(../../images/arrow_down.svg);
+//   //   position: absolute;
+//   //   // top: -2px;
+//   // }
+// }
 
 .meta {
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
+  padding-bottom: 25px;
+  font-weight: 600;
 
   p {
     margin: 0;
@@ -49,10 +51,33 @@
   margin: auto;
 }
 
+.loadingHolder {
+  width: 100%;
+  height: 100vh;
+  background-color: #cecece;
+}
+
 .hide {
   display: none;
 }
 
 .show {
   display: block;
+}
+
+.playListSwitch {
+  display: inline;
+  float: right;
+  margin-right: 5%;
+  margin-top: 6px;
+
+  span {
+    font-size: 15px;
+    font-family: 'Sarabun';
+    font-weight: 400;
+  }
+}
+
+.active {
+  font-weight: 800 !important;
 }

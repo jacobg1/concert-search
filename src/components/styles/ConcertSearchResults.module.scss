@@ -1,14 +1,17 @@
 .loadMore {
-    appearance: none;
-    width: 100%;
-    line-height: 26px;
-    // margin-top: 13px;
-    border: 1px solid;
-    font-size: 14px;
-    font-weight: bold;
-    background-color: #eee;
-
-    &:focus {
-        outline: none;
-    }
+  appearance: none;
+  width: 100%;
+  line-height: 26px;
+  // margin-top: 13px;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 auto;
+  border: none;
+  background-color: #d7e0f9;
+  color: #000000;
+  font-family: 'Sarabun';
+    padding-bottom: 5px;
+  &:focus {
+    outline: none;
+  }
 }

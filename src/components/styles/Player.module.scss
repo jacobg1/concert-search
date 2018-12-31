@@ -3,12 +3,12 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 95px;
+  height: 85px;
   // margin-top: 20px;
   // margin-bottom: 20px;
-  background-color: #eeeeee;
+  background-image: linear-gradient(to right bottom, #c0e8f5, #a1ade2, #a2c1e8, #7fb0d0, #c0e8f5);
   // position: relative;
-  border: 1px solid black;
+  // border: 1px solid black;
 
   audio {
     width: 100%;
@@ -39,19 +39,19 @@
 }
 
 .play {
-  height: 20px;
+  height: 17px;
   width: auto;
 }
 
 .pause {
-  height: 20px;
+  height: 17px;
   width: auto;
 
 }
 
 .fastForward,
 .fastRewind {
-  height: 20px;
+  height: 17px;
   width: auto;
   display: inline-block;
   cursor: pointer;
@@ -92,25 +92,27 @@
 }
 
 .visToggle {
-  margin: 7px 20% 0 33%;
-  height: 23px;
-  width: 23px;
+  // margin: 7px 20% 0 33%;
+  margin-top: 7px;
+  margin-left: 35px;
+  height: 20px;
+  width: 20px;
   display: inline-block;
   background-image: url("../../images/audio-wave.svg");
   background-size: cover;
 
   &.visClose {
     background-image: url("../../images/times-solid.svg");
-    height: 27px;
-    width: 19px;
+    height: 21px;
+    width: 15px;
   }
 }
 
 .customControls {
   display: flex;
-  width: 100%;
+  width: 93%;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   text-align: center;
   margin: 0 auto;
 }

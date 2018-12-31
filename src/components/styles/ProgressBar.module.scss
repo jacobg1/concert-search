@@ -2,10 +2,11 @@
   //   position: absolute;
   //   bottom: 10px;
   //   width: 100%;
-    margin-top: 15px;
+  margin-top: 8px;
+
   .currentTime {
     display: block;
-    font-size: 13px;
+    font-size: 12px;
     float: left;
     padding: 6px 0 0 4%;
 
@@ -19,7 +20,7 @@
   .totalTime {
     display: block;
     float: right;
-    font-size: 13px;
+    font-size: 12px;
     padding: 6px 4% 0 0;
 
     &:after {
@@ -45,15 +46,18 @@ progress[value] {
 }
 
 progress[value]::-webkit-progress-bar {
-  background-color: #eee;
+  background-color: rgb(137, 137, 213);
   border-radius: 2px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
 
 }
 
 progress[value]::-webkit-progress-value {
-  background-color: red;
-  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, .25), rgba(0, 0, 0, .25)), -webkit-linear-gradient(left, #73d3da, rgba(15, 80, 130, 0.632));
+  background-color: #dde1ff;
+  // background-image: -webkit-linear-gradient(top, rgba(210, 175, 175, 0.25), rgba(0, 0, 0, .25)), -webkit-linear-gradient(left, #cecece, rgba(102, 115, 125, 0.632));
+  // background-image: linear-gradient(to right, #58b2ad, #29a3b7, #0892be, #367ebc, #6066ae);
+  background: repeating-linear-gradient( 45deg, #dde1ff, #dde1ff 10px, #94adde 10px, #94adde 20px );
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   border-radius: 2px;
   //   background-size: 35px 20px, 100% 100%, 100% 100%;

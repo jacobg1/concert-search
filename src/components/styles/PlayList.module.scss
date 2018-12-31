@@ -1,34 +1,38 @@
 .playList {
   text-align: left;
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   padding-bottom: 35px;
 
   h3 {
     font-size: 23px;
+    font-size: 23px;
+    display: inline-block;
+    margin: 0;
+    padding-bottom: 17px;
   }
 
   span {
-    font-size: 16px;
+    font-size: 14px;
     max-width: 195px;
     display: inline-block;
     // word-break: break-all;
     // line-height: 22px;
+    letter-spacing: .8px;
   }
 
   .playHolder {
-    background-color: #eee;
-    border: 1px solid black;
-    // line-height: 35px;
-    padding: 10px;
+    background-color: #dde1ff;
+    border: 1px solid white;
     position: relative;
+    color: #2c2252;
   }
 
   .remove {
 
     position: absolute;
     top: 50%;
-    right: 8px;
+    right: 11px;
     transform: translateY(-50%);
     width: 18px;
 
@@ -41,4 +45,9 @@
   min-height: calc(63vh - 109px);
   // border-top: 1px solid black;
   /* border-bottom: 1px solid black; */
+}
+
+.playListPadding {
+  padding: 7px 10px;
+
 }
