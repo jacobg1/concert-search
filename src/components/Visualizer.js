@@ -28,7 +28,8 @@ class Visualizer extends Component {
     createVisualizer () {
      
         let { audioData } = this.props,
-            { isVisClose } = this.props
+            { isVisClose } = this.props,
+            { isPlaying } = this.props
 
         let canvas = document.getElementById('canvas')
         
@@ -46,7 +47,7 @@ class Visualizer extends Component {
 
         // console.log(randomColor(13))
         // console.log(this.props.isVisClose)
-        if(!isVisClose) {
+        if(!isVisClose && isPlaying) {
             select(canvas)
                 .selectAll('rect')
                 .data(audioData)
@@ -67,14 +68,14 @@ class Visualizer extends Component {
                 .delay(300)
                 .attr("fill", function (d, i) {
                     let x = (i + 1) % 360
-                    return "hsl(" + x  + ",100%,50%)"
+                    return "hsl(" + (i + 170)  + ",100%,50%)"
                 })
                 .attr('x', (d, i) => i * 10)
 
                 .attr('y', d => 300 - yScale(d))
                 .attr('height', d => yScale(d) * 2)
                 .attr('width', 7)
-                .remove()
+                // .remove()
         }
         
 
@@ -127,5 +128,6 @@ export default Visualizer;
 Visualizer.propTypes = {
     audioData: PropTypes.object,
     closeVisualizer: PropTypes.func,
-    isVisClose: PropTypes.bool
+    isVisClose: PropTypes.bool,
+    isPlaying: PropTypes.bool
 }
