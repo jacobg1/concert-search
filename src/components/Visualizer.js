@@ -33,20 +33,11 @@ class Visualizer extends Component {
 
         let canvas = document.getElementById('canvas')
         
-        // var svgHeight = canvas.clientHeight;
-        // var svgWidth = canvas.clientWidth;
-        // var barPadding = '1';
-        const dataMax = max(audioData)
-        const yScale = scaleLinear()
+        let dataMax = max(audioData)
+        let yScale = scaleLinear()
             .domain([0, dataMax])
             .range([0, 300])
            
-        // console.log(transition)
-        // const randomColor = scaleLinear()
-        //     .category20()
-
-        // console.log(randomColor(13))
-        // console.log(this.props.isVisClose)
         if(!isVisClose && isPlaying) {
             select(canvas)
                 .selectAll('rect')
@@ -60,54 +51,35 @@ class Visualizer extends Component {
                 .exit()
                 .remove()
 
-
+        // select(canvas)
+        //         .selectAll("circle")
+        //         .data(audioData)
+        //         .attr("cx", (d, i) => d )
+        //         .attr("cy", (d) => d)
+        //         .attr("r", 1e-6)
+        //         .style("stroke", "red")
+        //         .style("stroke-opacity", 0.7)
+        //         .transition()
+        //         .attr("r", 400)
+        //         .style("stroke-opacity", 0.001)
+                // .remove();
             select(canvas)
                 .selectAll('rect')
                 .data(audioData)
                 .transition()
                 .delay(300)
                 .attr("fill", function (d, i) {
-                    let x = (i + 1) % 360
+                    // let x = (i + 1) % 360
                     return "hsl(" + (i + 170)  + ",100%,50%)"
                 })
                 .attr('x', (d, i) => i * 10)
-
                 .attr('y', d => 300 - yScale(d))
                 .attr('height', d => yScale(d) * 2)
                 .attr('width', 7)
                 // .remove()
-        }
-        
-
-        // select(canvas)
-        //     .selectAll('rect')
-        //     .data(audioData)
-        //     .attr('x', (d, i) => i * (svgWidth / audioData.length))
-        //     .attr('y', function (d) {
-        //         return  d;
-        //     })
-        //     .attr('height', function (d) {
-        //         return d
-        //     })
-        //     .attr('fill', function (d) {
-        //         return 'rgb(0, 0, ' + d + ')';
-        //     })
-        //     .attr('width', (svgWidth / audioData.length) - .2)    
-       
-           
-       
-    //    svg.selectAll('rect')
-    //        .data([4,10,20])
-    //        .enter()
-    //        .append('rect')
-    //        .attr('width', 300 / this.props.audioData.length - 5)
-    //        .attr('x', function (d, i) {
-    //            return i * (300 / this.props.audioData.length);
-    //        })
-            
-        
-       
+        }   
     }
+
     render() {
        
         return (
