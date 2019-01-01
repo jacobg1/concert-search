@@ -7,6 +7,12 @@ import plusSign from '../images/add.svg'
 import styles from './styles/TrackList.module.scss'
 
 class TrackList extends Component {
+   
+    componentDidUpdate (prevProps) {
+        if(!prevProps.selectedSong && this.props.selectedSong) {
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+    }
     
     render() {
 

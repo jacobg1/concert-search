@@ -88,8 +88,11 @@ class IndividualConcert extends Component {
     }
     
     componentDidUpdate(prevProps) {
-        if(prevProps.concertToPlay !== this.props.concertToPlay) {
-            this.makeConcertSearch(this.props.concertToPlay)
+
+        let { concertToPlay } = this.props
+
+        if(prevProps.concertToPlay !== concertToPlay) {
+            this.makeConcertSearch(concertToPlay)
         }
     }
     
@@ -209,18 +212,21 @@ class IndividualConcert extends Component {
     }
 
     addToPlayList(songIndex) {
+        let { title } = this.state.trackList[songIndex],
+            { name } = this.state.trackList[songIndex]
 
-        let name = this.state.trackList[songIndex].title
-            ? this.state.trackList[songIndex].title
-            : this.state.trackList[songIndex].name
-            ? this.state.trackList[songIndex].name
+        let playName = title
+            ? title
+            : name
+            ? name
             : ''
 
-        let { trackList } = this.state
+        let { trackList } = this.state,
+            { playUrl } = trackList[songIndex]
 
         let newTrack = [{
-            name: name,
-            songUrl: trackList[songIndex].playUrl,
+            name: playName,
+            songUrl: playUrl,
         }]
         
         let newTrackArray = [...this.state.playList, ...newTrack]
@@ -344,6 +350,8 @@ class IndividualConcert extends Component {
                         </div>
                 }   
 
+                <div className={ styles.mainContainer }>
+
                 {
                     this.state && !this.state.loading && this.checkPlayListLength() &&
                         <div className={ styles.playListSwitch }>
@@ -387,6 +395,7 @@ class IndividualConcert extends Component {
                             checkType={ this.state.isPlayListSong }
                         />
                 }   
+                </div> 
                 <div className={ 
                     this.state.loading
                         ? styles.hide
@@ -401,7 +410,8 @@ class IndividualConcert extends Component {
                                 prevSong={ this.prevSong }
                             />
                     }    
-                </div>           
+                </div>   
+                       
             </>
         );
     }

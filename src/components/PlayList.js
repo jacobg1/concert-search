@@ -5,6 +5,12 @@ import styles from './styles/PlayList.module.scss'
 import remove from '../images/clear.svg'
 
 class PlayList extends Component {
+
+    componentDidUpdate(prevProps) {
+        if (!prevProps.selectedSong && this.props.selectedSong) {
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+    }
     
     render() {
         let { checkType } = this.props,

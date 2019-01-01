@@ -92,20 +92,7 @@ class HomeContainer extends Component {
         return (
             <>  
                     
-                    <span
-                        className={
-                            `${styles.showConcertButton}
-                                ${!this.state.selectedConcert ? styles.hide : ''}`
-                        }
-                        onClick={() => this.switchScreens()}
-                    >   
-                        {
-                            this.state.switchScreens 
-                            ? <img className={styles.leftArrow} src={left} alt="left-arrow"></img>
-                            : <img className={styles.rightArrow} src={right} alt="right-arrow"></img>
-
-                        }
-                    </span>
+                   
                 
                 
 
@@ -131,12 +118,27 @@ class HomeContainer extends Component {
                             <img className={ styles.record } src={ recordPlayer } alt='record-icon'></img>
                         </div>
                 }
+                <div className={ styles.homeContainer }>
+                <span
+                    className={
+                        `${styles.showConcertButton}
+                                ${!this.state.selectedConcert ? styles.hide : ''}`
+                    }
+                    onClick={() => this.switchScreens()}
+                >
+                    {
+                        this.state.switchScreens
+                            ? <img className={styles.leftArrow} src={left} alt="left-arrow"></img>
+                            : <img className={styles.rightArrow} src={right} alt="right-arrow"></img>
+
+                    }
+                </span>
                 <div className={
                     `${styles.concertResults} 
                      ${this.state.switchScreens ? styles.hide : '' }`
                 }>
                          
-
+                   
                     
 
                     { 
@@ -149,7 +151,7 @@ class HomeContainer extends Component {
                     }
 
                 </div>  
-
+                </div>
                 <div className={
                     `${styles.individualConcert} 
                      ${!this.state.switchScreens ? styles.hide : ''}` 
@@ -167,6 +169,7 @@ class HomeContainer extends Component {
                             />
                     }
                 </div>    
+               
             </>
         );
     }
