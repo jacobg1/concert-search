@@ -1,9 +1,10 @@
 @import './breakpoints.scss';
+@import './font-size.scss';
 
 .leftArrow,
 .rightArrow {
   // width: 15px;
-  font-size: 15px;
+  @include font-size(15);
   float: right;
   line-height: 26px;
 
@@ -39,7 +40,7 @@
   p {
     margin: 0;
     text-align: left;
-    font-size: 15px;
+    @include font-size(15);
     margin-top: 5px;
     @include breakpoint(768px) {
       text-align: center;
@@ -77,7 +78,7 @@
   margin-top: 6px;
 
   span {
-    font-size: 15px;
+    @include font-size(15);
     font-family: 'Sarabun';
     font-weight: 400;
   }
@@ -86,6 +87,7 @@
 .active {
   font-weight: 800 !important;
 }
+
 .mainContainer {
   width: 100%;
   max-width: 900px;

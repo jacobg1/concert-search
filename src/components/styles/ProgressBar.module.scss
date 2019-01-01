@@ -1,3 +1,5 @@
+@import './font-size.scss';
+
 .progressBarHolder {
   //   position: absolute;
   //   bottom: 10px;
@@ -6,7 +8,7 @@
 
   .currentTime {
     display: block;
-    font-size: 12px;
+    @include font-size(12);
     float: left;
     padding: 6px 0 0 4%;
 
@@ -20,7 +22,7 @@
   .totalTime {
     display: block;
     float: right;
-    font-size: 12px;
+    @include font-size(12);
     padding: 6px 4% 0 0;
 
     &:after {

@@ -1,4 +1,5 @@
 @import './breakpoints.scss';
+@import './font-size.scss';
 
 #dropDown {
   margin-top: 26px;
@@ -19,8 +20,7 @@
     font-family: 'Sarabun';
     font-weight: 700;
     border: 1px solid white;
-    font-size: 13px;
-
+    @include font-size(13);
   }
 
   select::-ms-expand {
@@ -37,10 +37,11 @@
   @include breakpoint(768px) {
     max-width: 440px;
   }
+
   span {
     font-family: 'Sarabun';
     font-weight: 800;
-    font-size: 14px;
+    @include font-size(14);
     display: inline-block;
     color: #c11717;
     //   margin-bottom: -26px;
@@ -70,6 +71,6 @@
     width: 21%;
     background-color: #d8dbff;
     color: #2c2252;
-    font-size: 13px;
+    @include font-size(13);
   }
 }

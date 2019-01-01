@@ -1,3 +1,5 @@
+@import './font-size.scss';
+
 .checkMark {
   // display: inline;
   width: 13px;
@@ -48,7 +50,7 @@
   }
 
   h3 {
-    font-size: 23px;
+    @include font-size(23);
     display: inline-block;
     margin: 0;
     padding-bottom: 17px;
@@ -57,7 +59,8 @@
   }
 
   span {
-    font-size: 14px;
+    // font-size: 14px;
+    @include font-size(16);
     max-width: 195px;
     display: inline-block;
     // word-break: break-all;

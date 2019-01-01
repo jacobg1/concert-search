@@ -15,12 +15,12 @@ class Visualizer extends Component {
         super(props)
         this.createVisualizer = this.createVisualizer.bind(this)
     }
-    componentDidMount () {
-        // this.createVisualizer()
-        // console.log(this.props.audioData)
+    // componentDidMount () {
+    //     // this.createVisualizer()
+    //     // console.log(this.props.audioData)
        
         
-    }
+    // }
     componentDidUpdate() {
         this.createVisualizer()
     }
@@ -51,18 +51,6 @@ class Visualizer extends Component {
                 .exit()
                 .remove()
 
-        // select(canvas)
-        //         .selectAll("circle")
-        //         .data(audioData)
-        //         .attr("cx", (d, i) => d )
-        //         .attr("cy", (d) => d)
-        //         .attr("r", 1e-6)
-        //         .style("stroke", "red")
-        //         .style("stroke-opacity", 0.7)
-        //         .transition()
-        //         .attr("r", 400)
-        //         .style("stroke-opacity", 0.001)
-                // .remove();
             select(canvas)
                 .selectAll('rect')
                 .data(audioData)
