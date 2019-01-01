@@ -27,31 +27,35 @@ class Player extends Component {
     componentDidMount () {
         
         // create new audio content to interact with the browsers audio api
-        this.audioContext = new (window.AudioContext || window.webkitAudioContext)()
+        let audioContext = new (window.AudioContext || window.webkitAudioContext)()
 
         // select audio element and set cross origin to anonymous
         // this bypasses cors issues
-        this.audioElement = document.getElementById('musicPlayer')
-        this.audioElement.crossOrigin = 'anonymous'
+        let audioElement = document.getElementById('musicPlayer')
+            audioElement.crossOrigin = 'anonymous'
 
         // connect playing song to audio context
         // and create an instance of the audio api's analyzer
-        this.audioSource = this.audioContext.createMediaElementSource(this.audioElement)
-        this.analyser = this.audioContext.createAnalyser()
+        this.audioSource = audioContext.createMediaElementSource(audioElement)
+        this.analyser = audioContext.createAnalyser()
 
         // copy frequency data received from audio analyser to data array
         // this will get saved as state in the next() function
         // eslint-disable-next-line no-undef
-        this.dataArray = new Uint8Array(this.analyser.frequencyBinCount)
+        this.setState({dataArray: new Uint8Array(this.analyser.frequencyBinCount)
+         }, () => {
+                // connect audio source to analyser        
+                this.audioSource.connect(this.analyser)
+                this.audioSource.connect(audioContext.destination)
 
-        // connect audio source to analyser        
-        this.audioSource.connect(this.analyser)
-        this.audioSource.connect(this.audioContext.destination)
+                // play song and start visualizer animation
+                this.playSong()
+         })
 
-        // play song and start visualizer animation
-        this.playSong()
+        
     }
     componentDidUpdate (prevProps) {
+        
         if(prevProps.songToPlay !== this.props.songToPlay) {
             this.playSong()
         }
@@ -59,8 +63,8 @@ class Player extends Component {
 
     // starts loop that streams frequency data to state audioData array
     next() {
-        this.analyser.getByteTimeDomainData(this.dataArray)
-        this.setState({ audioData: this.dataArray }, () => {
+        this.analyser.getByteTimeDomainData(this.state.dataArray)
+        this.setState({ audioData: this.state.dataArray }, () => {
             // console.log(this.state.audioData)
         });
         if (this.state.isPlaying) {
@@ -77,8 +81,8 @@ class Player extends Component {
     }
     pauseSong () {
         cancelAnimationFrame(this.animationId)
-        // let player = document.getElementById('musicPlayer')
-        this.audioElement.pause()
+        let player = document.getElementById('musicPlayer')
+        player.pause()
 
         this.setState({ isPlaying: false }, () => {
             console.log(this.state.isPlaying)
@@ -87,13 +91,16 @@ class Player extends Component {
        
     }
     closeVisualizer () {
+        // window.scrollTo(0, document.body.scrollHeight);
+
         this.setState({isVisClose: !this.state.isVisClose})
         console.log('test')
     }
     playSong () {
         // let player = document.getElementById('musicPlayer')
-        
-        this.audioElement.play()
+        let player = document.getElementById('musicPlayer')
+
+        player.play()
         this.animationId = requestAnimationFrame(this.next)
 
         this.setState({ isPlaying: true }, () => {
@@ -123,6 +130,7 @@ class Player extends Component {
                             <Visualizer 
                                 audioData={this.state.audioData} 
                                 isVisClose={this.state.isVisClose}
+                                isPlaying={this.state.isPlaying}
                             />
                     }
 
