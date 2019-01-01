@@ -1,3 +1,5 @@
+@import './breakpoints.scss';
+
 .leftArrow,
 .rightArrow {
   // width: 15px;
@@ -39,6 +41,9 @@
     text-align: left;
     font-size: 15px;
     margin-top: 5px;
+    @include breakpoint(768px) {
+      text-align: center;
+    }
   }
 }
 
@@ -80,4 +85,9 @@
 
 .active {
   font-weight: 800 !important;
+}
+.mainContainer {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
 }

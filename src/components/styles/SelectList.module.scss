@@ -1,3 +1,5 @@
+@import './breakpoints.scss';
+
 #dropDown {
   margin-top: 26px;
   text-align: right;
@@ -32,7 +34,9 @@
   padding-top: 11px;
   max-width: 362px;
   margin: 0 auto;
-
+  @include breakpoint(768px) {
+    max-width: 440px;
+  }
   span {
     font-family: 'Sarabun';
     font-weight: 800;

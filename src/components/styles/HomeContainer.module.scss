@@ -16,6 +16,7 @@
   text-align: left;
   padding-bottom: 25px;
   display: block;
+  max-width: 900px;
   // border-top: 1px solid black;
   @include breakpoint(768px) {
     // color: blue;
@@ -37,7 +38,7 @@
     margin-bottom: 10px;
     color: #000000;
     cursor: pointer;
-    max-width: 420px;
+    // max-width: 420px;
     @include breakpoint(768px) {
       margin-bottom: 20px;
     }
@@ -66,16 +67,19 @@
   width: 38px;
   position: absolute;
   z-index: 1;
-  top: 203px;
+  top: -34px;
   cursor: pointer;
 }
-
-.leftArrow {
-  left: 1%;
+.rightArrow {
+  top: -66px;
 }
 
+.leftArrow,
 .rightArrow {
-  left: 1%;
+  left: 2%;
+  @include breakpoint(777px) {
+    left: 25px;
+  }
 }
 
 .recordHolder {
@@ -135,3 +139,9 @@
 //     background-color: #dde1ff;
 //   }
 // }
+.homeContainer {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
