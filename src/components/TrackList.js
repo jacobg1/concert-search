@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import checkMark from '../images/check-solid.svg'
 import plusSign from '../images/add.svg'
 import styles from './styles/TrackList.module.scss'
+import ReactSVG from 'react-svg'
 
 class TrackList extends Component {
    
@@ -27,17 +28,17 @@ class TrackList extends Component {
                 { name } = trackList[song],
                 { playUrl } = trackList[song]
 
+            let active = (!checkType && playUrl === selectedSong)
+
             return <div 
                       className={
                           `${styles.trackHolder}
-                              ${(!checkType && playUrl === selectedSong) ? styles.trackActive : ''}`
+                           ${active ? styles.trackActive : ''}`
                       }    
                       key={i}
-                    >
+                   >
                     <div className={ styles.trackPadding } onClick={() => this.props.setSong(playUrl, i)}>
-                        <span 
-                            className={( !checkType && playUrl === selectedSong ) ? 'active' : '' }
-                        >
+                        <span>
                             {
                                 title 
                                     ? title
@@ -54,8 +55,8 @@ class TrackList extends Component {
                     > 
                     {
                         !this.props.checkPlayList(playUrl)
-                            ? <img className={ styles.plus } src={ plusSign } alt="add to playlist"></img>
-                            : <img className={ styles.checkMark } src={ checkMark } alt="check-mark"></img>
+                            ? <ReactSVG className={ styles.plus } src={ plusSign } />
+                            : <ReactSVG className={ styles.checkMark } src={ checkMark } />
                     }
                     </div>
                 </div>   

@@ -121,20 +121,22 @@ class ConcertSearchResults extends Component {
                     this.state && this.state.nextResults &&
                         this.state.nextResults
                 } 
-                {
-                    (this.state.concertIndex + 1) !== Object.keys(this.props.concerts).length 
+                <div className={ styles.loadMoreHolder }>
+                    {
+                        (this.state.concertIndex + 1) !== Object.keys(this.props.concerts).length 
 
-                        ? <button 
-                            className={ `${styles.loadMore} ${styles.cursor}` }
-                            onClick={() => this.increaseConcertIndex()}
-                          >
-                            Load more
-                          </button>
+                            ? <button 
+                                className={ `${styles.loadMore} ${styles.cursor}` }
+                                onClick={() => this.increaseConcertIndex()}
+                            >
+                                Load more
+                            </button>
 
-                        : Object.keys(this.props.concerts).length === 1
-                        ? ''
-                        : <button className={styles.loadMore}>No more results</button> 
-                }
+                            : Object.keys(this.props.concerts).length === 1
+                            ? ''
+                            : <button className={styles.loadMore}>No more results</button> 
+                    }
+                </div>
             </>
         );
     }
