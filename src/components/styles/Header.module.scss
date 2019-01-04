@@ -1,7 +1,11 @@
+@import "./font-size.scss";
+
 header {
   h1 {
     margin: 0 0 5px;
     padding-top: 25px;
+    @include font-size(33);
     font-family: 'Noto Sans';
+    color: #1a142f;
   }
 }

@@ -21,9 +21,19 @@
 }
 
 .concert {
+  max-width: 390px;
+  margin: 0 auto;
+  box-shadow: 0 1px 4px 0 #696a88;
+  cursor: pointer;
   @include breakpoint(768px) {
     width: calc(33.3333% - 6.66667px);
     max-width: 250px;
+    min-height: 76px;
+    line-height: 75px;
+    background-color: #d7e0f9;
+    margin: 0 auto 19px;
+    text-align: center;
+    border: 1px solid white;
   }
 
 }

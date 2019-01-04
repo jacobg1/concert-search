@@ -40,6 +40,7 @@
   p {
     margin: 0;
     text-align: left;
+    color: #1a142f;
     @include font-size(15);
     margin-top: 5px;
     @include breakpoint(768px) {
@@ -81,11 +82,14 @@
     @include font-size(15);
     font-family: 'Sarabun';
     font-weight: 400;
+    cursor: pointer;
+    color: #1a142f;
   }
-}
 
-.active {
-  font-weight: 800 !important;
+  .active {
+    font-weight: 800 !important;
+    color: #c91c1c;
+  }
 }
 
 .mainContainer {

@@ -8,7 +8,7 @@
   select {
     appearance: none;
     border: none;
-    background: url("../../images/arrow_down.svg") 98% / 25px no-repeat #d8dbff;
+    background: url("../../images/arrow_down.svg") 98% / 25px no-repeat #d7e0fa;
     display: block;
     margin: 9px auto;
     width: 90%;
@@ -54,7 +54,10 @@
     margin: auto;
 
     span {
-      color: black;
+      color: #c91c1c;
+      &:hover {
+        fill: red;
+      }
 
     }
   }
@@ -69,8 +72,10 @@
     font-weight: 700;
     padding-bottom: 3px;
     width: 21%;
-    background-color: #d8dbff;
-    color: #2c2252;
+    // background-color: #d8dbff;
+    background-color: #d7e0fa;
+    color: #c91c1c;
     @include font-size(13);
+    cursor: pointer;
   }
 }

@@ -45,6 +45,7 @@ progress[value] {
   display: block;
   margin: auto;
   color: blue;
+  cursor: pointer;
 }
 
 progress[value]::-webkit-progress-bar {
@@ -55,11 +56,11 @@ progress[value]::-webkit-progress-bar {
 }
 
 progress[value]::-webkit-progress-value {
-  background-color: #dde1ff;
+  background-color: rgb(132, 0, 255);
   // background-image: -webkit-linear-gradient(top, rgba(210, 175, 175, 0.25), rgba(0, 0, 0, .25)), -webkit-linear-gradient(left, #cecece, rgba(102, 115, 125, 0.632));
-  // background-image: linear-gradient(to right, #58b2ad, #29a3b7, #0892be, #367ebc, #6066ae);
+  background-image: linear-gradient(to right, rgb(0, 255, 225), rgb(0, 179, 255), rgb(0, 123, 255), rgb(77, 0, 255), rgb(132, 0, 255));
   // background: repeating-linear-gradient( 45deg, #dde1ff, #dde1ff 10px, #94adde 10px, #94adde 20px );
-  background: -webkit-linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, 0.1) 33%, rgba(0, 0, 0, 0.1) 66%, transparent 66%), -webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.25)), -webkit-linear-gradient(left, #9fb6e1, #e1e5fe);
+  // background: -webkit-linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, 0.1) 33%, rgba(0, 0, 0, 0.1) 66%, transparent 66%), -webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.25)), -webkit-linear-gradient(left, #9fb6e1, #e1e5fe);
   border-radius: 2px;
   //   background-size: 35px 20px, 100% 100%, 100% 100%;
 }

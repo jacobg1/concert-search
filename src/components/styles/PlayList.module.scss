@@ -37,6 +37,7 @@
     padding-bottom: 17px;
     font-family: 'Sarabun';
     font-weight: 600;
+    color: #c91c1c;
   }
 
   span {
@@ -53,6 +54,11 @@
     border: 1px solid white;
     position: relative;
     color: #2c2252;
+    cursor: pointer;
+
+    &.playActive {
+      background-color: white;
+    }
   }
 
   .remove {

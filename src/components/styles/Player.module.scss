@@ -1,3 +1,5 @@
+@import './breakpoints.scss';
+
 .player {
   // position: fixed;
   bottom: 0;
@@ -98,6 +100,7 @@
   margin-left: 35px;
   height: 20px;
   width: 20px;
+  cursor: pointer;
   display: inline-block;
   background-image: url("../../images/audio-wave.svg");
   background-size: cover;
@@ -111,9 +114,13 @@
 
 .customControls {
   display: flex;
-  width: 93%;
   flex-direction: row;
+  width: 93%;
   justify-content: space-between;
   text-align: center;
   margin: 0 auto;
+  @include breakpoint(400px) {
+    width: 93.9%;
+
+  }
 }

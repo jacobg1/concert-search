@@ -19,6 +19,7 @@
   // color: blue;
   text-align: left;
   width: 90%;
+
   margin: 0 auto;
   padding-bottom: 35px;
   //   border-bottom: 1px solid black;
@@ -56,6 +57,7 @@
     padding-bottom: 17px;
     font-family: 'Sarabun';
     font-weight: 600;
+    color: #c91c1c;
   }
 
   span {
@@ -73,6 +75,12 @@
     position: relative;
     color: #2c2252;
     letter-spacing: .8px;
+    cursor: pointer;
+
+    &.trackActive {
+      background-color: white;
+
+    }
 
   }
 
