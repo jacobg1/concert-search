@@ -28,7 +28,10 @@ class TrackList extends Component {
                 { playUrl } = trackList[song]
 
             return <div 
-                      className={styles.trackHolder}    
+                      className={
+                          `${styles.trackHolder}
+                              ${(!checkType && playUrl === selectedSong) ? styles.trackActive : ''}`
+                      }    
                       key={i}
                     >
                     <div className={ styles.trackPadding } onClick={() => this.props.setSong(playUrl, i)}>
@@ -45,7 +48,7 @@ class TrackList extends Component {
                                 {/* <span> track { i + 1 } of { trackListLength }</span> */}
                         </span>
                     </div>
-                    <span
+                    <div
                         onClick={() => this.props.addToPlayList(i)}
                         className={ styles.addPlayList }
                     > 
@@ -54,7 +57,7 @@ class TrackList extends Component {
                             ? <img className={ styles.plus } src={ plusSign } alt="add to playlist"></img>
                             : <img className={ styles.checkMark } src={ checkMark } alt="check-mark"></img>
                     }
-                    </span>
+                    </div>
                 </div>   
         })
         

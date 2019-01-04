@@ -26,7 +26,10 @@ class PlayList extends Component {
 
             return <div 
                       key={i}
-                      className={ styles.playHolder }
+                      className={ 
+                          `${styles.playHolder}
+                                ${(checkType && songUrl === selectedSong) ? styles.playActive : ''}` 
+                      }
                    >
                    <div className={ styles.playListPadding } onClick={() => this.props.setPlayListSong( songUrl, id )}>
                       <span 
