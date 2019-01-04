@@ -55,8 +55,10 @@ class Player extends Component {
         
     }
     componentDidUpdate (prevProps) {
-        
+
         if(prevProps.songToPlay !== this.props.songToPlay) {
+            cancelAnimationFrame(this.animationId)
+
             this.playSong()
         }
     }
@@ -92,9 +94,22 @@ class Player extends Component {
     }
     closeVisualizer () {
         // window.scrollTo(0, document.body.scrollHeight);
+        // cancelAnimationFrame(this.animationId)
 
-        this.setState({isVisClose: !this.state.isVisClose})
+        // this.animationId = null
+        this.setState({
+            isVisClose: !this.state.isVisClose
+        }, () => {
+                // this.animationId = requestAnimationFrame(this.next)
+        })
         console.log('test')
+    }
+    cancelAnimation() {
+        cancelAnimationFrame(this.animationId)
+
+    }
+    startAnimation() {
+        this.animationId = requestAnimationFrame(this.next)
     }
     playSong () {
         // let player = document.getElementById('musicPlayer')
@@ -183,7 +198,10 @@ class Player extends Component {
                         onEnded={() => this.props.nextSong(playListSongIndex)}
                     />
 
-                    <ProgressBar playSong={ this.playSong } />
+                    <ProgressBar 
+                        playSong={ this.playSong } 
+                        cancelAnimation={ this.cancelAnimation }
+                    />
                 </div>
             
           </>  

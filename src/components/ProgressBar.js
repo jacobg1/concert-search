@@ -79,7 +79,7 @@ class ProgressBar extends Component {
     // click event to change song position when
     // progress bar is clicked
     findPosition (e) {
-        
+        this.props.cancelAnimation()
         // select progress bar and audio element
         let progressBar = document.getElementById('progressBar'),
             player = document.getElementById('musicPlayer')
@@ -129,5 +129,6 @@ class ProgressBar extends Component {
 export default ProgressBar
 
 ProgressBar.propTypes = {
-    playSong: PropTypes.func
+    playSong: PropTypes.func,
+    cancelAnimation: PropTypes.func
 }
