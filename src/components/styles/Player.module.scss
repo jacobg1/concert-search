@@ -44,11 +44,21 @@
 .play {
   height: 17px;
   width: auto;
+  transition: all .3s ease-in-out;
+
+  &:hover {
+    filter: brightness(0) invert(1);
+  }
 }
 
 .pause {
   height: 17px;
   width: auto;
+  transition: all .3s ease-in-out;
+
+  &:hover {
+    filter: brightness(0) invert(1);
+  }
 
 }
 
@@ -58,6 +68,11 @@
   width: auto;
   display: inline-block;
   cursor: pointer;
+  transition: all .3s ease-in-out;
+
+  &:hover {
+    filter: brightness(0) invert(1);
+  }
 }
 
 .fastForward {
@@ -86,12 +101,14 @@
   height: auto;
   width: 25px;
   margin-top: 7px;
+
 }
 
 .closeVis {
   height: auto;
   width: 16px;
   margin-top: 6px;
+
 }
 
 .visToggle {
@@ -104,6 +121,12 @@
   display: inline-block;
   background-image: url("../../images/audio-wave.svg");
   background-size: cover;
+  transition: all .3s ease-in-out;
+  
+  &:hover {
+    filter: brightness(0) invert(1);
+
+  }
 
   &.visClose {
     background-image: url("../../images/times-solid.svg");

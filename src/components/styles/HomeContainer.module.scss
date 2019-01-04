@@ -30,28 +30,7 @@
     flex-wrap: wrap;
   }
 
-  p {
-    @include font-size(14);
-    font-weight: 600;
-    margin: 0 auto;
-    color: #1a142f;
-    padding: 10px 15px 12px;
-    // border: 1px solid #000000;
-    background-color: #d7e0f9;
-    margin-bottom: 10px;
-    // color: #000000;
-    cursor: pointer;
-    // max-width: 420px;
-    border: 1px solid white;
-    @include breakpoint(768px) {
-      border: none;
-      margin-bottom: 0;
-      /* height: 100%; */
-      display: inline-block;
-      line-height: normal;
-      vertical-align: middle;
-    }
-  }
+  
 
 }
 

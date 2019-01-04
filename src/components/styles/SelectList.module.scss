@@ -8,12 +8,17 @@
   select {
     appearance: none;
     border: none;
-    background: url("../../images/arrow_down.svg") 98% / 25px no-repeat #d7e0fa;
+
+    background: url("../../images/arrow_down.svg") 98%/25px, -webkit-linear-gradient(-45deg, #fd717100 33%, rgba(255, 222, 222, 0.1) 33%, rgba(251, 229, 229, 0.1) 66%, #f7949400 66%), -webkit-linear-gradient(top, rgba(255, 211, 211, 0.25), #d7dffb), -webkit-linear-gradient(left, #d4ddff, #fefeff);
+    // background-color: -webkit-linear-gradient(-45deg, #fd717100 33%, rgba(255, 222, 222, 0.1) 33%, rgba(251, 229, 229, 0.1) 66%, #f7949400 66%), -webkit-linear-gradient(top, rgba(255, 211, 211, 0.25), #d7dffb), -webkit-linear-gradient(left, #d4ddff, #fefeff);
+    // background-image: url("../../images/arrow_down.svg");
+    background-repeat: no-repeat;
     display: block;
     margin: 9px auto;
     width: 90%;
     border-radius: 0;
     line-height: 32px;
+
     color: #2c2252;
     font-weight: bold;
     padding-left: 15px;
@@ -55,6 +60,7 @@
 
     span {
       color: #c91c1c;
+
       &:hover {
         fill: red;
       }
@@ -77,5 +83,6 @@
     color: #c91c1c;
     @include font-size(13);
     cursor: pointer;
+    background: -webkit-linear-gradient(-45deg, #fd717100 33%, rgba(255, 222, 222, 0.1) 33%, rgba(251, 229, 229, 0.1) 66%, #f7949400 66%), -webkit-linear-gradient(top, rgba(255, 211, 211, 0.25), #d7dffb), -webkit-linear-gradient(left, #d4ddff, #fefeff);
   }
 }

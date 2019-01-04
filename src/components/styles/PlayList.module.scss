@@ -56,18 +56,35 @@
     color: #2c2252;
     cursor: pointer;
 
-    &.playActive {
+    &:hover {
       background-color: white;
+
+      svg {
+        fill: #c91c1c;
+      }
+
+      span {
+        color: #c91c1c;
+      }
+    }
+  }
+
+  .playActive {
+    background-color: white;
+
+    span {
+      color: #c91c1c;
     }
   }
 
   .remove {
-
-    position: absolute;
-    top: 50%;
-    right: 11px;
-    transform: translateY(-50%);
-    width: 18px;
+    svg {
+      position: absolute;
+      top: 50%;
+      right: 11px;
+      transform: translateY(-50%);
+      width: 18px;
+    }
 
   }
 }
@@ -83,4 +100,8 @@
 .playListPadding {
   padding: 7px 10px;
 
+}
+
+.delete-active {
+  display: none;
 }
