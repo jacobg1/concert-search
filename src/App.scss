@@ -1,10 +1,17 @@
 html {
   font-size: 62.5%;
 }
+
 .App {
   text-align: center;
-  background-color: #94adde;
+  // background-color: #94adde;
+  background-color: #f0ecf9;
   min-height: 100vh;
+  // background: -webkit-linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, 0.1) 33%, rgba(0, 0, 0, 0.1) 66%, transparent 66%), -webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.25)), -webkit-linear-gradient(left, #9fb6e1, #e1e5fe);
+  // background: -webkit-linear-gradient(-45deg, transparent 0%, rgba(0, 0, 0, 0.1) 46%, rgba(0, 0, 0, 0.1) 66%, transparent 95%), -webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.25)), -webkit-linear-gradient(left, #659afd, #ff8fe2);
+  // background: linear-gradient(left, #659afd, #ff8fe2);
+  // background: -webkit-linear-gradient(left, #659afd, #aeceff);
+  background: #bed5ff;
 }
 @font-face {
   font-family: 'Noto Sans';
