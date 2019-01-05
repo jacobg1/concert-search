@@ -88,24 +88,8 @@ class HomeContainer extends Component {
     }
 
     render() {
-
         return (
             <>  
-                    
-                   
-                
-                
-
-                {/* {
-                    this.state && this.state.selectedArtist &&
-                    <span style={{ fontSize: 25 }}>{this.state.selectedArtist}</span>
-                }
-
-                {
-                    this.state && this.state.selectedYear &&
-                    <span style={{ fontSize: 25 }}>, {this.state.selectedYear}</span>
-                } */}
-
                 {
                     this.state &&
                         <SelectList
@@ -118,50 +102,49 @@ class HomeContainer extends Component {
                             <img className={ styles.record } src={ recordPlayer } alt='record-icon'></img>
                         </div>
                 }
+
                 <div className={ styles.homeContainer }>
-                <span
-                    className={
-                        `${styles.showConcertButton}
-                                ${!this.state.selectedConcert ? styles.hide : ''}`
-                    }
-                    onClick={() => this.switchScreens()}
-                >
-                    {
-                        this.state.switchScreens
-                            ? <img className={styles.leftArrow} src={left} alt="left-arrow"></img>
-                            : <img className={styles.rightArrow} src={right} alt="right-arrow"></img>
 
-                    }
-                </span>
-                <div className={
-                    `${styles.concertResults} 
-                     ${this.state.switchScreens ? styles.hide : '' }`
-                }>
-                         
-                   
-                    
+                    <span
+                        className={
+                            `${styles.showConcertButton}
+                                    ${!this.state.selectedConcert ? styles.hide : ''}`
+                        }
+                        onClick={() => this.switchScreens()}
+                    >
+                        {
+                            this.state.switchScreens
+                                ? <img className={styles.leftArrow} src={left} alt="left-arrow"></img>
+                                : <img className={styles.rightArrow} src={right} alt="right-arrow"></img>
 
-                    { 
-                        this.state && this.state.searchResults && 
+                        }
+                    </span>
 
-                            <ConcertSearchResults 
-                                concerts={ this.state.searchResults }
-                                showConcertScreen= { this.showConcertScreen }
-                            />
-                    }
+                    <div 
+                        className={
+                            `${styles.concertResults} 
+                             ${this.state.switchScreens ? styles.hide : '' }`
+                        }
+                    >
+                        { 
+                            this.state && this.state.searchResults && 
+                                <ConcertSearchResults 
+                                    concerts={ this.state.searchResults }
+                                    showConcertScreen= { this.showConcertScreen }
+                                />
+                        }
+                    </div>  
 
-                </div>  
                 </div>
-                <div className={
-                    `${styles.individualConcert} 
-                     ${!this.state.switchScreens ? styles.hide : ''}` 
-                }>
-                    
-                    
-                        
+
+                <div 
+                    className={
+                        `${styles.individualConcert} 
+                         ${!this.state.switchScreens ? styles.hide : ''}` 
+                    }
+                > 
                     {
                         this.state && 
-
                             <IndividualConcert 
                                 selectedArtist={ this.state.selectedArtist }
                                 showConcertScreen={ this.showConcertScreen }
@@ -169,7 +152,6 @@ class HomeContainer extends Component {
                             />
                     }
                 </div>    
-               
             </>
         );
     }
