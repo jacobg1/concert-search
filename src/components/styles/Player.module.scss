@@ -1,23 +1,17 @@
 @import './breakpoints.scss';
 
 .player {
-  // position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   height: 85px;
-  // margin-top: 20px;
-  // margin-bottom: 20px;
   // background-image: linear-gradient(to right bottom, #c0e8f5, #a1ade2, #a2c1e8, #7fb0d0, #c0e8f5);
   background-image: linear-gradient(to right bottom, #c0e8f5, #a1ade2, #a2c1e8, #a1ade2, #c0e8f5);
-  // position: relative;
-  // border: 1px solid black;
 
   audio {
     width: 100%;
     height: 100%;
     max-height: 40px;
-
   }
 
   textarea {
@@ -27,10 +21,7 @@
 
 .pause,
 .play {
-
   cursor: pointer;
-  // float: left;
-  // margin-left: 2%;
   margin-top: 11px;
   margin-left: 3%;
 
@@ -76,18 +67,10 @@
 }
 
 .fastForward {
-  // background-image: url("../../images/fast-forward.svg");
   margin-left: 20px;
 }
 
-.fastRewind {
-  // background-image: url("../../images/fast-rewind.svg");
-}
-
 .forwardBackHolder {
-  // float: right;
-  // float: right;
-  // margin-right: 3%;
   margin-top: 11px;
 
   &:after {
@@ -101,18 +84,15 @@
   height: auto;
   width: 25px;
   margin-top: 7px;
-
 }
 
 .closeVis {
   height: auto;
   width: 16px;
   margin-top: 6px;
-
 }
 
 .visToggle {
-  // margin: 7px 20% 0 33%;
   margin-top: 7px;
   margin-left: 35px;
   height: 20px;
@@ -122,10 +102,9 @@
   background-image: url("../../images/audio-wave.svg");
   background-size: cover;
   transition: all .3s ease-in-out;
-  
+
   &:hover {
     filter: brightness(0) invert(1);
-
   }
 
   &.visClose {
@@ -144,6 +123,5 @@
   margin: 0 auto;
   @include breakpoint(400px) {
     width: 93.9%;
-
   }
 }

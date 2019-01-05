@@ -1,11 +1,16 @@
 @import "./font-size.scss";
+@import "./breakpoints.scss";
 
 header {
   h1 {
     margin: 0 0 5px;
-    padding-top: 25px;
+    padding-top: 45px;
     @include font-size(33);
     font-family: 'Noto Sans';
-    color: #1a142f;
+    color: #c91f20;
+
+    @include breakpoint(768px) {
+       @include font-size(40);
+    }
   }
 }

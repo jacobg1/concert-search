@@ -20,13 +20,11 @@
 
   ::-webkit-scrollbar-thumb {
     background-color: #94adde;
-    // border-radius: 10px;
     border: 1px solid #ffffff;
     border-left: none;
   }
 
   ::-webkit-scrollbar-track {
-    // border-radius: 10px;
     background-color: #dde1ff;
   }
 
@@ -44,8 +42,6 @@
     @include font-size(16);
     max-width: 195px;
     display: inline-block;
-    // word-break: break-all;
-    // line-height: 22px;
     letter-spacing: .8px;
   }
 
@@ -53,27 +49,27 @@
     background-color: #dde1ff;
     border: 1px solid white;
     position: relative;
-    color: #2c2252;
+    color: #1e1d2c;
     cursor: pointer;
 
     &:hover {
-      background-color: white;
+      background-color: #99a2e6;
 
       svg {
-        fill: #c91c1c;
+        fill: #ffffff;
       }
 
       span {
-        color: #c91c1c;
+        color: #ffffff;
       }
     }
   }
 
   .playActive {
-    background-color: white;
+    background-color: #99a2e6;
 
     span {
-      color: #c91c1c;
+      color: #ffffff;
     }
   }
 

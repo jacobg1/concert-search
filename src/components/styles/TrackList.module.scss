@@ -1,10 +1,6 @@
 @import './font-size.scss';
 
 .checkMark {
-  // display: inline;
-
-  // padding-right: 7px;
-  // vertical-align: text-top;
   svg {
     width: 13px;
     padding-right: 4px;
@@ -13,13 +9,9 @@
 }
 
 .plus {
-
-  // padding-right: 7px;
   svg {
     width: 20px;
-    // display: inline-block;
     vertical-align: text-bottom;
-
   }
 
   &:hover svg {
@@ -28,16 +20,11 @@
 }
 
 .trackList {
-  // color: blue;
   text-align: left;
   width: 90%;
-
   margin: 0 auto;
   padding-bottom: 35px;
-  //   border-bottom: 1px solid black;
-  // max-height: 100vh;
-  // overflow-x: auto;
-  // overflow-y: auto;
+
   ::-webkit-scrollbar {
     -webkit-appearance: none;
   }
@@ -52,13 +39,11 @@
 
   ::-webkit-scrollbar-thumb {
     background-color: #94adde;
-    // border-radius: 10px;
     border: 1px solid #ffffff;
     border-left: none;
   }
 
   ::-webkit-scrollbar-track {
-    // border-radius: 10px;
     background-color: #dde1ff;
   }
 
@@ -73,66 +58,49 @@
   }
 
   span {
-    // font-size: 14px;
     @include font-size(16);
     max-width: 195px;
     display: inline-block;
-    // word-break: break-all;
-    // line-height: 22px;
   }
 
   .trackHolder {
     background-color: #dde1ff;
     border: 1px solid white;
     position: relative;
-    color: #2c2252;
+    color: #1e1d2c;
     letter-spacing: .8px;
     cursor: pointer;
 
-    // &.trackActive {
-    //   background-color: white;
-
-    //   svg {
-    //     fill: #c91c1c;
-    //   }
-
-    //   path {
-    //     fill: #c91c1c;
-    //   }
-
-    // }
     &:hover {
-      // background-color: white;
-      background: #ffcfcf;
+      background: #99a2e6;
 
       .plus svg {
-        fill: #c91c1c;
+        fill: #ffffff;
       }
 
       .checkMark path {
-        fill: #c91c1c;
+        fill: #ffffff;
       }
 
       span {
-        color: #c91c1c;
+        color: #ffffff;
       }
     }
   }
 
   .trackActive {
-    // background-color: white;
-    background: #ffcfcf;
+    background: #99a2e6;
 
     span {
-      color: #c91c1c;
+      color: #ffffff;
     }
 
     .plus svg {
-      fill: #c91c1c;
+      fill: #ffffff;
     }
 
     .checkMark path {
-      fill: #c91c1c;
+      fill: #ffffff;
     }
   }
 
@@ -146,14 +114,11 @@
     right: 10px;
     transform: translateY(-50%);
   }
-
 }
 
 .maxHeightHolder {
   max-height: 40vh;
   overflow-y: auto;
   min-height: calc(63vh - 109px);
-  //   border-top: 1px solid black;
-
   border-left: none;
 }

@@ -3,33 +3,16 @@
 
 .leftArrow,
 .rightArrow {
-  // width: 15px;
   @include font-size(15);
   float: right;
   line-height: 26px;
-
   margin-top: 24px;
   margin-right: 6%;
 }
 
 .leftArrow {
   float: right;
-
-  // &:after {
-  //   content: url(../../images/arrow_up.svg);
-  //   position: absolute;
-  //   // top: -2px;
-  // }
 }
-
-// .rightArrow {
-
-//   // &:after {
-//   //   content: url(../../images/arrow_down.svg);
-//   //   position: absolute;
-//   //   // top: -2px;
-//   // }
-// }
 
 .meta {
   width: 90%;
@@ -40,7 +23,7 @@
   p {
     margin: 0;
     text-align: left;
-    color: #1a142f;
+    color: #1e1d2c;
     @include font-size(15);
     margin-top: 5px;
     @include breakpoint(768px) {
@@ -83,7 +66,7 @@
     font-family: 'Sarabun';
     font-weight: 400;
     cursor: pointer;
-    color: #1a142f;
+    color: #1e1d2c;
   }
 
   .active {

@@ -8,7 +8,6 @@
   select {
     appearance: none;
     border: none;
-
     background: url("../../images/arrow_down.svg") 98%/25px, -webkit-linear-gradient(-45deg, #fd717100 33%, rgba(255, 222, 222, 0.1) 33%, rgba(251, 229, 229, 0.1) 66%, #f7949400 66%), -webkit-linear-gradient(top, rgba(255, 211, 211, 0.25), #d7dffb), -webkit-linear-gradient(left, #d4ddff, #fefeff);
     // background-color: -webkit-linear-gradient(-45deg, #fd717100 33%, rgba(255, 222, 222, 0.1) 33%, rgba(251, 229, 229, 0.1) 66%, #f7949400 66%), -webkit-linear-gradient(top, rgba(255, 211, 211, 0.25), #d7dffb), -webkit-linear-gradient(left, #d4ddff, #fefeff);
     // background-image: url("../../images/arrow_down.svg");
@@ -19,7 +18,7 @@
     border-radius: 0;
     line-height: 32px;
 
-    color: #2c2252;
+    color: #1e1d2c;
     font-weight: bold;
     padding-left: 15px;
     font-family: 'Sarabun';
@@ -36,7 +35,7 @@
 
 .selectHolder {
   position: relative;
-  padding-top: 11px;
+  padding-top: 20px;
   max-width: 362px;
   margin: 0 auto;
   @include breakpoint(768px) {
@@ -49,7 +48,6 @@
     @include font-size(14);
     display: inline-block;
     color: #c11717;
-    //   margin-bottom: -26px;
   }
 
   .choices {
@@ -59,18 +57,12 @@
     margin: auto;
 
     span {
-      color: #c91c1c;
-
-      &:hover {
-        fill: red;
-      }
-
+      color: #1e1d2c;
     }
   }
 
   button {
     appearance: none;
-    // float: right;
     margin-right: 5%;
     border: 1px solid white;
     line-height: 27px;
@@ -78,7 +70,6 @@
     font-weight: 700;
     padding-bottom: 3px;
     width: 21%;
-    // background-color: #d8dbff;
     background-color: #d7e0fa;
     color: #c91c1c;
     @include font-size(13);

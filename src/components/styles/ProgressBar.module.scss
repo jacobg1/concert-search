@@ -1,9 +1,6 @@
 @import './font-size.scss';
 
 .progressBarHolder {
-  //   position: absolute;
-  //   bottom: 10px;
-  //   width: 100%;
   margin-top: 8px;
 
   .currentTime {
@@ -34,12 +31,8 @@
 }
 
 progress[value] {
-
   appearance: none;
-
   border: none;
-
-  //   width: 90%;
   height: 15px;
   width: 94%;
   display: block;
