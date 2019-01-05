@@ -35,7 +35,7 @@ class IndividualConcert extends Component {
     }
     makeConcertSearch (concert) {
         // make api call for concert data on component mount
-        let url = 'http://localhost:3000/concert/' + concert
+        let url = 'https://concert-search.herokuapp.com/concert/' + concert
         this.setState({ loading: true}, () => {
             axios({
                 method: 'GET',

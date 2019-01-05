@@ -36,7 +36,7 @@ class HomeContainer extends Component {
            let formatArtist = searchArtist.replace(/ /g, '+')
 
            // build api call url 
-           let url = 'http://localhost:3000/meta/' + formatArtist + '/' + searchYear
+           let url = 'https://concert-search.herokuapp.com/meta/' + formatArtist + '/' + searchYear
 
            // make call then set state of results 
            axios({
