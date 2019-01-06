@@ -8,12 +8,12 @@ class Header extends Component {
         return (
             <>
               <Helmet>
-                  <title>My Title</title>
-                  <link rel="canonical" href="http://mysite.com/example" />
+                  <title>Concert Search</title>
+                  <link rel="canonical" href="http://concert-search-2.surge.sh" />
               </Helmet>
 
               <header>
-                  <h1>CRUNCH2.0</h1>
+                    <h1>Concert Search2.0</h1>
               </header>
             </>
         );
