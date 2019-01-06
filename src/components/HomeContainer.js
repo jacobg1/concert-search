@@ -8,6 +8,7 @@ import right from '../images/arrow_right.svg'
 import left from '../images/arrow_left.svg'
 import axios from 'axios'
 import recordPlayer from '../images/vynil.svg'
+import loader from '../images/ripple.svg'
 
 class HomeContainer extends Component {
     constructor () {
@@ -18,7 +19,8 @@ class HomeContainer extends Component {
             selectedArtist: '',
             selectedYear: '',
             selectedConcert: '',
-            searchMade: false
+            searchMade: false,
+            isLoading: false
         }
         // binding 'this' to passed down functions to keep context
         this.makeSearch = this.makeSearch.bind(this)
@@ -37,25 +39,28 @@ class HomeContainer extends Component {
 
            // build api call url 
            let url = 'https://concert-search.herokuapp.com/meta/' + formatArtist + '/' + searchYear
-
-           // make call then set state of results 
-           axios({
-               method: 'GET',
-               url: url,
-               dataType: 'jsonp'
-           }).then((response) => {
+        this.setState({isLoading: true}, () => {
+            // make call then set state of results 
+            axios({
+                method: 'GET',
+                url: url,
+                dataType: 'jsonp'
+            }).then((response) => {
 
                 this.setState({
                     searchResults: response.data,
                     selectedArtist: searchArtist,
                     selectedYear: searchYear,
                     switchScreens: false,
-                    searchMade: true
+                    searchMade: true,
+                    isLoading: false
                 })
-        
-           }).catch(function(error) {
-               console.log(error)
-           })
+
+            }).catch(function (error) {
+                console.log(error)
+            })
+        })
+           
        }
     }
     
@@ -97,12 +102,17 @@ class HomeContainer extends Component {
                         />
                 } 
                 {
-                    this.state && !this.state.searchMade &&
+                    this.state && !this.state.searchMade && !this.state.isLoading &&
                         <div className={ styles.recordHolder }>
                             <img className={ styles.record } src={ recordPlayer } alt='record-icon'></img>
                         </div>
                 }
-
+                {
+                    this.state && this.state.isLoading &&
+                    <div className={styles.loadingHolder}>
+                        <img className={styles.loader} src={loader} alt="loading..." />
+                    </div>
+                }
                 <div className={ styles.homeContainer }>
 
                     <span

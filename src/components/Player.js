@@ -87,7 +87,7 @@ class Player extends Component {
         player.pause()
 
         this.setState({ isPlaying: false }, () => {
-            console.log(this.state.isPlaying)
+            // console.log(this.state.isPlaying)
         })
 
        
@@ -102,7 +102,7 @@ class Player extends Component {
         }, () => {
                 // this.animationId = requestAnimationFrame(this.next)
         })
-        console.log('test')
+        // console.log('test')
     }
     cancelAnimation() {
         cancelAnimationFrame(this.animationId)
@@ -119,7 +119,7 @@ class Player extends Component {
         this.animationId = requestAnimationFrame(this.next)
 
         this.setState({ isPlaying: true }, () => {
-            console.log(this.state.isPlaying)
+            // console.log(this.state.isPlaying)
 
         })
     }
