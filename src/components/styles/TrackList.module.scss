@@ -1,17 +1,25 @@
 @import './font-size.scss';
+@import './breakpoints.scss';
 
 .checkMark {
   svg {
-    width: 13px;
+    width: 15px;
     padding-right: 4px;
     vertical-align: text-bottom;
+    @include breakpoint(768px) {
+      width: 13px;
+    }
+
   }
 }
 
 .plus {
   svg {
-    width: 20px;
+    width: 26px;
     vertical-align: text-bottom;
+    @include breakpoint(768px) {
+      width: 20px;
+    }
   }
 
   &:hover svg {
@@ -72,18 +80,21 @@
     cursor: pointer;
 
     &:hover {
-      background: #99a2e6;
+      @include breakpoint(768px) {
 
-      .plus svg {
-        fill: #ffffff;
-      }
+        background: #99a2e6;
 
-      .checkMark path {
-        fill: #ffffff;
-      }
+        .plus svg {
+          fill: #ffffff;
+        }
 
-      span {
-        color: #ffffff;
+        .checkMark path {
+          fill: #ffffff;
+        }
+
+        span {
+          color: #ffffff;
+        }
       }
     }
   }
