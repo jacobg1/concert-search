@@ -9,7 +9,7 @@ class Header extends Component {
             <>
               <Helmet>
                   <title>Concert Search</title>
-                  <link rel="canonical" href="http://concert-search-2.surge.sh" />
+                  <link rel="canonical" href="http://concert-search.surge.sh" />
               </Helmet>
 
               <header>
