@@ -6,7 +6,6 @@ import spinner from '../images/ripple.svg'
 import Player from './Player'
 import TrackList from './TrackList'
 import PlayList from './PlayList'
-
 import unique from '../util/uniqueArray'
 import styles from './styles/IndividualConcert.module.scss'
 
@@ -83,7 +82,6 @@ class IndividualConcert extends Component {
     // when component mounts make concert search
     // and set playlist if it exists
     componentDidMount () {
-        // this.makeConcertSearch(this.props.concertToPlay)
         this.setPlayList()
     }
     
@@ -97,26 +95,18 @@ class IndividualConcert extends Component {
     }
     
     setSong(selectedSong, songIndex) {
-        // console.log(selectedSong, songIndex)
         this.setState({
             selectedSong: selectedSong,
             songIndex: songIndex,
             isPlayListSong: false
-            
-        }, () => {
-            // console.log('here', songIndex)
-            // console.log(this.state.isPlayListSong)
         })
     }
 
     setPlayListSong(playListSong, selectedIndex) {
-        // console.log(playListSong)
         this.setState({ 
-                selectedSong: playListSong, 
-                playListSongIndex: selectedIndex,
-                isPlayListSong: true    
-            }, () => {
-            // console.log(this.state.playListSongIndex)
+            selectedSong: playListSong, 
+            playListSongIndex: selectedIndex,
+            isPlayListSong: true    
         })
     }
 
@@ -247,7 +237,6 @@ class IndividualConcert extends Component {
 
     // function to remove a song from the playlist
     removeFromPlayList(songIndex) {
-        // console.log(songIndex, this.state.songIndex)
 
         let newArray = this.state.playList.filter((item, i) => i !== songIndex)
        
@@ -290,18 +279,13 @@ class IndividualConcert extends Component {
         if(stringPlayList.indexOf(url) > -1) {
             return true
         }
-        // console.log(url)
     }
     playListSwitch () {
-
-
         this.setState({
             playListScreen: true 
         })
     }
     trackListSwitch() {
-
-
         this.setState({
             playListScreen: false
         })
@@ -323,11 +307,8 @@ class IndividualConcert extends Component {
 
         let { coverage } = this.state.metaData,
             { venue } = this.state.metaData,
-            // { runtime } = this.state.metaData,
             { date } = this.state.metaData
-            // { lineage } = this.state.metaData,
-            // { notes } = this.state.metaData,
-            // { source } = this.state.metaData
+          
 
         return (
             <>  
@@ -340,14 +321,11 @@ class IndividualConcert extends Component {
                 
                 {
                     this.state && this.state.metaData && !this.state.loading &&
-                        <div className={ styles.meta }>
+                      <div className={ styles.meta }>
                         <p>{this.props.selectedArtist}</p>
-
-                            <p>
-                            { coverage ? coverage : '' } { venue ? ` - ${venue}` : '' }</p>
-                            {/* { runtime ? <p>Runtime: { runtime }</p> : '' } */}
-                            { date ? <p>{ date }</p> : '' }
-                        </div>
+                        <p>{ coverage ? coverage : '' } { venue ? ` - ${venue}` : '' }</p>
+                        { date ? <p>{ date }</p> : '' }
+                      </div>
                 }   
 
                 <div className={ styles.mainContainer }>

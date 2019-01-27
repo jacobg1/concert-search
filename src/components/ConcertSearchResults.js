@@ -10,7 +10,6 @@ class ConcertSearchResults extends Component {
             concertIndex: 0,
             nextResults: []
         }
-        // binding this on click function
         this.increaseConcertIndex = this.increaseConcertIndex.bind(this)
     }
    
@@ -25,8 +24,6 @@ class ConcertSearchResults extends Component {
             this.setState({
                 nextResults: [...newResults],
                 concertIndex: 0
-            }, () => {
-                // console.log('test', this.state.newResults, this.state.concertIndex)
             })
         }
     }
@@ -61,56 +58,33 @@ class ConcertSearchResults extends Component {
                     </p>
             </div>
         })
-        // console.log(structuredData)
         return structuredData
     }
    
     loadData() {
 
-        let initialResults = this.returnDataStructure(0)
+      let initialResults = this.returnDataStructure(0)
 
-        // merge in new results
-        this.setState({
-            nextResults: [...this.state.nextResults, ...initialResults]
-        }, () => {
-            // console.log('test', this.state.nextResults)
-        })
+      // merge in new results
+      this.setState({
+        nextResults: [...this.state.nextResults, ...initialResults]
+      })
     }
 
     increaseConcertIndex () {
 
-            // increase counter and then display the next chunk
-            this.setState({
-                concertIndex: this.state.concertIndex + 1
-            }, () => {
+      // increase counter and then display the next chunk
+      this.setState({
+        concertIndex: this.state.concertIndex + 1
+      }, () => {
+	
+        let nextChunk = this.returnDataStructure(this.state.concertIndex)
 
-                // let { concerts } = this.props,
-                //     { concertIndex } = this.state
-
-                // const nextChunk = Object.keys(concerts[concertIndex]).map((item) => {
-                //     return <div 
-                //         className="individual-concert" 
-                //         key={ concerts[concertIndex][item].id }
-                //         onClick={() => this.props.showConcertScreen(concerts[concertIndex][item].identifier)} 
-                //     >
-                //         <p>
-                //             { 
-                //               concerts[concertIndex][item].title 
-                //                 ? concerts[concertIndex][item].title 
-                //                 : concerts[concertIndex][item].identifier
-                //             }
-                //         </p>
-                //     </div>
-                // })
-                let nextChunk = this.returnDataStructure(this.state.concertIndex)
-                // merge in next chunk to state array
-                this.setState({
-                    nextResults: [...this.state.nextResults, ...nextChunk]
-                }, () => {
-                    // console.log('test', this.state.nextResults, this.state.concertIndex)
-
-                })
-            })
+        // merge in next chunk to state array
+        this.setState({
+          nextResults: [...this.state.nextResults, ...nextChunk]
+        })
+      })
     }
 
     render() {
@@ -138,10 +112,10 @@ class ConcertSearchResults extends Component {
                     }
                 </div>
             </>
-        );
+        )
     }
 }
-export default ConcertSearchResults;
+export default ConcertSearchResults
 
 ConcertSearchResults.propTypes = {
     concerts: PropTypes.array.isRequired,

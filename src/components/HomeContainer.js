@@ -29,39 +29,39 @@ class HomeContainer extends Component {
 
     makeSearch(e, searchArtist, searchYear) {
         
-       e.preventDefault()
+      e.preventDefault()
 
-       // only make search results if search artist has been selected
-       if(searchArtist !== '') {
+        // only make search results if search artist has been selected
+      if(searchArtist !== '') {
 
-           // format artist name for api call
-           let formatArtist = searchArtist.replace(/ /g, '+')
+        // format artist name for api call
+        let formatArtist = searchArtist.replace(/ /g, '+')
 
-           // build api call url 
-           let url = 'https://concert-search.herokuapp.com/meta/' + formatArtist + '/' + searchYear
+        // build api call url 
+        let url = 'https://concert-search.herokuapp.com/meta/' + formatArtist + '/' + searchYear
+  
         this.setState({isLoading: true}, () => {
-            // make call then set state of results 
-            axios({
-                method: 'GET',
-                url: url,
-                dataType: 'jsonp'
-            }).then((response) => {
-
-                this.setState({
-                    searchResults: response.data,
-                    selectedArtist: searchArtist,
-                    selectedYear: searchYear,
-                    switchScreens: false,
-                    searchMade: true,
-                    isLoading: false
-                })
-
-            }).catch(function (error) {
-                console.log(error)
+          // make call then set state of results 
+          axios({
+            method: 'GET',
+            url: url,
+            dataType: 'jsonp'
+          })
+          .then((response) => {
+            this.setState({
+              searchResults: response.data,
+              selectedArtist: searchArtist,
+              selectedYear: searchYear,
+              switchScreens: false,
+              searchMade: true,
+              isLoading: false
             })
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
         })
-           
-       }
+      }
     }
     
     showConcertScreen (selectedConcert) {
@@ -75,8 +75,6 @@ class HomeContainer extends Component {
         this.setState({ 
             selectedConcert: selectedConcert,
             switchScreens: !switchScreens  
-        }, () => {
-            // console.log(this.state.selectedConcert)
         })
     }
 
@@ -87,8 +85,6 @@ class HomeContainer extends Component {
         // toggle individual concert screen
         this.setState({ 
             switchScreens: !switchScreens 
-        }, () => {
-            // console.log(this.state.selectedConcert)
         })
     }
 
@@ -97,21 +93,21 @@ class HomeContainer extends Component {
             <>  
                 {
                     this.state &&
-                        <SelectList
-                            makeSearch={this.makeSearch}
-                        />
+                      <SelectList
+                        makeSearch={this.makeSearch}
+                      />
                 } 
                 {
                     this.state && !this.state.searchMade && !this.state.isLoading &&
-                        <div className={ styles.recordHolder }>
-                            <img className={ styles.record } src={ recordPlayer } alt='record-icon'></img>
-                        </div>
+                      <div className={ styles.recordHolder }>
+                        <img className={ styles.record } src={ recordPlayer } alt='record-icon'></img>
+                      </div>
                 }
                 {
                     this.state && this.state.isLoading &&
-                    <div className={styles.loadingHolder}>
-                        <img className={styles.loader} src={loader} alt="loading..." />
-                    </div>
+                      <div className={styles.loadingHolder}>
+                        <img className={styles.loader} src={loader} alt='loading...' />
+                      </div>
                 }
                 <div className={ styles.homeContainer }>
 
@@ -124,9 +120,8 @@ class HomeContainer extends Component {
                     >
                         {
                             this.state.switchScreens
-                                ? <img className={styles.leftArrow} src={left} alt="left-arrow"></img>
-                                : <img className={styles.rightArrow} src={right} alt="right-arrow"></img>
-
+                              ? <img className={styles.leftArrow} src={left} alt='left-arrow'></img>
+                              : <img className={styles.rightArrow} src={right} alt='right-arrow'></img>
                         }
                     </span>
 
