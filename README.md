@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.org/jacobg1/Concert-search.svg?branch=master)](https://travis-ci.org/jacobg1/Concert-search)
+[![Build Status](https://travis-ci.org/jacobg1/Concert-search.svg?branch=master)](https://travis-ci.org/jacobg1/Concert-search.svg?branch=master)
 
 A search UI that pulls in live concert recordings from archive.org's API.
 
