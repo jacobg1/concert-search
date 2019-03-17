@@ -1,3 +1,4 @@
+# concert-search
 
 [![Build Status](https://travis-ci.org/jacobg1/Concert-search.svg?branch=master)](https://travis-ci.org/jacobg1/Concert-search.svg?branch=master)
 
