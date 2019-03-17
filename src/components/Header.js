@@ -13,7 +13,7 @@ class Header extends Component {
               </Helmet>
 
               <header>
-                <h1>Concert Search</h1>
+                <h1>Concert Searches</h1>
               </header>
             </>
         );
