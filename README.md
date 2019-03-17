@@ -1,9 +1,7 @@
 # concert-search
 
 [![Build Status](https://travis-ci.org/jacobg1/Concert-search.svg?branch=master)](https://travis-ci.org/jacobg1/Concert-search)
-
 [![dependencies Status](https://david-dm.org/jacobg1/concert-search/status.svg)](https://david-dm.org/jacobg1/concert-search)
-
 [![devDependencies Status](https://david-dm.org/jacobg1/concert-search/dev-status.svg)](https://david-dm.org/jacobg1/concert-search?type=dev)
 
 A search UI that pulls in live concert recordings from archive.org's API.
